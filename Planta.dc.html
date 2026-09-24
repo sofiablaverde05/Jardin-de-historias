@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="position:relative;width:40px;height:84px;display:flex;align-items:flex-end;justify-content:center;pointer-events:none">
+<sc-if value="{{ s0 }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:30px;height:14px"><div style="position:absolute;left:0;bottom:0;width:30px;height:8px;border-radius:50% 50% 0 0;background:var(--soil,#b3c39c)"></div><div style="position:absolute;left:10px;top:0;width:10px;height:7px;border-radius:50%;background:var(--seed,#8a6a48)"></div></div></sc-if>
+<sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:26px;height:28px"><div style="position:absolute;left:12px;bottom:0;width:2px;height:20px;background:var(--stem,#5e7d54)"></div><div style="position:absolute;left:14px;top:4px;width:12px;height:7px;background:var(--leaf2,#7fa070);border-radius:0 100% 0 100%"></div><div style="position:absolute;left:0;top:8px;width:12px;height:7px;background:var(--leaf2,#7fa070);border-radius:100% 0 100% 0"></div></div></sc-if>
+<sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:32px;height:56px"><div style="position:absolute;left:15px;bottom:0;width:3px;height:42px;background:var(--stem,#5e7d54);border-radius:2px"></div><div style="position:absolute;left:18px;bottom:14px;width:14px;height:8px;background:var(--stem,#5e7d54);border-radius:0 100% 0 100%"></div><div style="position:absolute;left:1px;bottom:22px;width:14px;height:7px;background:var(--leaf2,#7fa070);border-radius:100% 0 100% 0"></div><div style="position:absolute;left:10px;top:0;width:13px;height:17px;border-radius:50% 50% 45% 45%;background:{{ col }}"></div></div></sc-if>
+<sc-if value="{{ gir }}" hint-placeholder-val="{{ true }}"><div style="position:relative;width:40px;height:84px"><div style="position:absolute;left:19px;bottom:0;width:3px;height:58px;background:var(--stem,#5e7d54);border-radius:2px"></div><div style="position:absolute;left:22px;bottom:22px;width:16px;height:8px;background:var(--stem,#5e7d54);border-radius:0 100% 0 100%"></div><div style="position:absolute;left:3px;bottom:32px;width:14px;height:7px;background:var(--stem,#5e7d54);border-radius:100% 0 100% 0"></div><div style="position:absolute;left:4px;top:0;width:32px;height:32px;box-sizing:border-box;border-radius:50%;border:4px dotted var(--cg,#e2a93b);background:radial-gradient(circle,var(--center,#7a5230) 0 36%,var(--cg,#e2a93b) 38%);box-shadow:var(--glowG,none)"></div></div></sc-if>
+<sc-if value="{{ orq }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:40px;height:58px"><div style="position:absolute;left:19px;bottom:0;width:2px;height:40px;background:var(--stem,#5e7d54)"></div><div style="position:absolute;left:6px;bottom:0;width:28px;height:8px;border-radius:50%;background:var(--stem,#5e7d54)"></div><div style="position:absolute;left:4px;top:6px;width:17px;height:12px;border-radius:50%;background:var(--co,#d98fae);transform:rotate(-30deg);box-shadow:var(--glowO,none)"></div><div style="position:absolute;left:19px;top:6px;width:17px;height:12px;border-radius:50%;background:var(--co,#d98fae);transform:rotate(30deg)"></div><div style="position:absolute;left:13px;top:14px;width:14px;height:12px;border-radius:50%;background:var(--co,#d98fae);filter:brightness(.88)"></div><div style="position:absolute;left:17px;top:11px;width:6px;height:6px;border-radius:50%;background:#fbf0d8"></div></div></sc-if>
+<sc-if value="{{ lav }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:24px;height:72px"><div style="position:absolute;left:11px;bottom:0;width:2px;height:62px;background:var(--stem,#5e7d54)"></div><div style="position:absolute;left:8px;top:0;width:8px;height:11px;border-radius:50%;background:var(--cl,#9a86c8);box-shadow:var(--glowL,none)"></div><div style="position:absolute;left:5px;top:8px;width:8px;height:11px;border-radius:50%;background:var(--cl,#9a86c8)"></div><div style="position:absolute;left:11px;top:13px;width:8px;height:11px;border-radius:50%;background:var(--cl,#9a86c8)"></div><div style="position:absolute;left:5px;top:21px;width:8px;height:11px;border-radius:50%;background:var(--cl,#9a86c8);filter:brightness(.88)"></div><div style="position:absolute;left:11px;top:27px;width:8px;height:11px;border-radius:50%;background:var(--cl,#9a86c8);filter:brightness(.88)"></div></div></sc-if>
+<sc-if value="{{ ros }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:36px;height:70px"><div style="position:absolute;left:17px;bottom:0;width:3px;height:48px;background:var(--stem,#5e7d54)"></div><div style="position:absolute;left:20px;bottom:18px;width:14px;height:8px;background:var(--stem,#5e7d54);border-radius:0 100% 0 100%"></div><div style="position:absolute;left:3px;bottom:26px;width:13px;height:7px;background:var(--leaf2,#7fa070);border-radius:100% 0 100% 0"></div><div style="position:absolute;left:6px;top:0;width:25px;height:25px;border-radius:50%;background:radial-gradient(circle,color-mix(in oklch,var(--cr,#c85b5b) 70%,black) 0 22%,var(--cr,#c85b5b) 24% 46%,color-mix(in oklch,var(--cr,#c85b5b) 82%,black) 48% 58%,var(--cr,#c85b5b) 60%);box-shadow:var(--glowR,none)"></div></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:80,&quot;height&quot;:100},&quot;tipo&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;conf&quot;,&quot;amor&quot;,&quot;calma&quot;,&quot;crec&quot;],&quot;default&quot;:&quot;conf&quot;,&quot;tsType&quot;:&quot;'conf'|'amor'|'calma'|'crec'&quot;},&quot;etapa&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;min&quot;:0,&quot;max&quot;:3,&quot;default&quot;:3,&quot;tsType&quot;:&quot;number&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const t = this.props.tipo ?? 'conf';
+    const e = Number(this.props.etapa ?? 3);
+    const col = { conf: 'var(--cg,#e2a93b)', amor: 'var(--co,#d98fae)', calma: 'var(--cl,#9a86c8)', crec: 'var(--cr,#c85b5b)' }[t];
+    const f = e >= 3;
+    return { s0: e === 0, s1: e === 1, s2: e === 2, gir: f && t === 'conf', orq: f && t === 'amor', lav: f && t === 'calma', ros: f && t === 'crec', col };
+  }
+}
+</script>
+</body>
+</html>

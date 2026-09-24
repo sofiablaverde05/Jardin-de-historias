@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet"><style>html,body{margin:0;padding:0}body{background:var(--page,#e9e4dc);transition:background .4s}a{color:var(--accent,#a9553a)}a:hover{color:var(--ink,#2e2823)}textarea::placeholder{color:var(--muted,#6b6158);opacity:.7}*::-webkit-scrollbar{display:none}</style></helmet>
+<div style="min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:12px 0;box-sizing:border-box">
+<div style="width:{{ fw }}px;height:{{ fh }}px;flex:none">
+<div style="width:412px;height:892px;transform:scale({{ scale }});transform-origin:0 0">
+<x-import component-from-global-scope="AndroidDevice" from="./android-frame.jsx" dark="{{ night }}" hint-size="412px,892px">
+<div style="position:relative;height:812px;display:flex;flex-direction:column;background:var(--bgImg);color:var(--ink);font-family:Karla,sans-serif;overflow:hidden;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;transition:background .4s">
+
+<sc-if value="{{ isWelcome }}" hint-placeholder-val="{{ false }}">
+<div data-screen="welcome" style="flex:1;display:flex;flex-direction:column;padding-bottom:28px">
+<div style="padding:56px 28px 0;text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center">
+<div style="font-family:'Young Serif',serif;font-size:32px;letter-spacing:.06em;line-height:1.15">JARDÍN DE<br>HISTORIAS</div>
+<div style="font-style:italic;font-size:17px;line-height:1.5;color:var(--muted);max-width:280px;text-wrap:pretty">“Cada historia puede sembrar una nueva posibilidad.”</div>
+</div>
+<div style="position:relative;flex:1">
+<div style="position:absolute;left:24px;right:24px;top:40px;bottom:20px;border-radius:48% 52% 44% 56% / 42% 46% 54% 58%;background:var(--hill)"></div>
+<div style="position:absolute;right:56px;top:40px;width:56px;height:56px;border-radius:50%;background:var(--orb);box-shadow:var(--orbGlow)"></div>
+<div style="position:absolute;left:116px;bottom:170px;width:180px;height:76px;background:var(--roof);clip-path:polygon(50% 0,100% 100%,0 100%)"></div>
+<div style="position:absolute;left:134px;bottom:68px;width:144px;height:104px;background:var(--wall)"></div>
+<div style="position:absolute;left:150px;bottom:114px;width:32px;height:32px;border-radius:50%;background:var(--win);box-shadow:var(--winGlow)"></div>
+<div style="position:absolute;left:210px;bottom:68px;width:44px;height:68px;border-radius:22px 22px 0 0;background:var(--door)"></div>
+<div style="position:absolute;left:48px;right:48px;bottom:62px;height:8px;border-radius:4px;background:var(--soil)"></div>
+<div style="position:absolute;left:78px;bottom:52px;display:flex;gap:196px"><dc-import name="Planta" tipo="conf" etapa="{{ 0 }}" hint-size="40px,84px"></dc-import><dc-import name="Planta" tipo="calma" etapa="{{ 0 }}" hint-size="40px,84px"></dc-import></div>
+</div>
+<div style="padding:0 24px"><div onClick="{{ toIntro }}" style="height:56px;border-radius:28px;background:var(--accent);color:var(--onAccent);font-weight:700;font-size:15px;letter-spacing:.1em;display:flex;align-items:center;justify-content:center;cursor:pointer" style-active="transform:scale(.97)">COMENZAR</div></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isIntro }}" hint-placeholder-val="{{ false }}">
+<div data-screen="intro" style="flex:1;display:flex;flex-direction:column;padding:32px 0 28px">
+<div style="position:relative;margin:0 40px;height:380px;border-radius:170px 170px 28px 28px;background:var(--archBg);box-shadow:var(--archRim);overflow:hidden">
+<div style="position:absolute;left:50%;top:48px;width:44px;height:44px;margin-left:-22px;border-radius:50%;background:var(--orb);box-shadow:var(--orbGlow)"></div>
+<div style="position:absolute;left:-40px;right:-40px;bottom:-80px;height:260px;border-radius:50%;background:var(--ground)"></div>
+<div style="position:absolute;left:0;right:0;bottom:60px;display:flex;justify-content:space-evenly;align-items:flex-end">
+<dc-import name="Planta" tipo="conf" etapa="{{ 0 }}" hint-size="40px,84px"></dc-import>
+<dc-import name="Planta" tipo="amor" etapa="{{ 0 }}" hint-size="40px,84px"></dc-import>
+<dc-import name="Planta" tipo="calma" etapa="{{ 0 }}" hint-size="40px,84px"></dc-import>
+<dc-import name="Planta" tipo="crec" etapa="{{ 0 }}" hint-size="40px,84px"></dc-import>
+</div>
+</div>
+<div data-enter="150" style="flex:1;padding:28px 32px 0;font-family:'Young Serif',serif;font-size:21px;line-height:1.45;text-wrap:pretty">Este es tu espacio. Aquí podrás cultivar diferentes aspectos de ti mientras descubres historias de mujeres que encontraron su propio camino.</div>
+<div style="padding:0 24px"><div onClick="{{ enterGarden }}" style="height:56px;border-radius:28px;background:var(--accent);color:var(--onAccent);font-weight:700;font-size:15px;letter-spacing:.1em;display:flex;align-items:center;justify-content:center;cursor:pointer" style-active="transform:scale(.97)">ENTRAR A MI JARDÍN</div></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCasa }}" hint-placeholder-val="{{ false }}">
+<div data-screen="casa" style="position:relative;flex:1;min-height:0;display:flex;flex-direction:column">
+<div style="opacity:var(--stars)"><div data-twinkle="0" style="position:absolute;left:44px;top:150px;width:3px;height:3px;border-radius:50%;background:#f3ede4"></div><div data-twinkle="800" style="position:absolute;left:120px;top:190px;width:2px;height:2px;border-radius:50%;background:#f3ede4"></div><div data-twinkle="400" style="position:absolute;left:210px;top:160px;width:3px;height:3px;border-radius:50%;background:#f3ede4"></div><div data-twinkle="1200" style="position:absolute;left:350px;top:250px;width:2px;height:2px;border-radius:50%;background:#f3ede4"></div><div data-twinkle="1600" style="position:absolute;left:170px;top:240px;width:2px;height:2px;border-radius:50%;background:#f3ede4"></div></div>
+<div style="position:relative;padding:18px 20px 0 24px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+<div><div style="font-size:14px;color:var(--muted)">{{ dateLabel }}</div><div style="font-family:'Young Serif',serif;font-size:32px;line-height:1.1;margin-top:4px">{{ greeting }}</div></div>
+<div style="display:flex;padding:3px;border-radius:999px;background:var(--surface2);border:1px solid var(--line);flex:none">
+<div onClick="{{ setDay }}" style="height:38px;padding:0 12px;border-radius:19px;background:{{ dayPillBg }};display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:{{ dayPillFg }};cursor:pointer"><div style="width:10px;height:10px;border-radius:50%;background:#e2a93b"></div>Día</div>
+<div onClick="{{ setNight }}" style="height:38px;padding:0 12px;border-radius:19px;background:{{ nightPillBg }};display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:{{ nightPillFg }};cursor:pointer"><div style="width:10px;height:10px;border-radius:50%;background:#f1e3c6;box-shadow:0 0 0 1.5px #6b6158 inset"></div>Noche</div>
+</div>
+</div>
+<div style="position:relative;flex:1">
+<div style="position:absolute;left:18px;right:18px;top:36px;bottom:16px;border-radius:48% 52% 44% 56% / 42% 46% 54% 58%;background:var(--hill)"></div>
+<sc-if value="{{ hasLetters }}" hint-placeholder-val="{{ false }}"><div onClick="{{ toCartas }}" style="position:absolute;left:20px;top:14px;z-index:3;height:44px;padding:0 16px 0 12px;border-radius:22px;background:var(--surface);border:1px solid var(--line);display:flex;align-items:center;gap:10px;cursor:pointer;box-shadow:var(--shadow)" style-active="transform:scale(.96)"><div style="position:relative;width:24px;height:17px;border-radius:3px;background:var(--env)"><div style="position:absolute;inset:0;background:var(--envFlap);clip-path:polygon(0 0,100% 0,50% 58%);border-radius:3px"></div></div><div style="font-size:14px;font-weight:700;white-space:nowrap">Mis cartas · {{ nLetters }}</div></div></sc-if>
+<div style="position:absolute;right:48px;top:26px;width:60px;height:60px;border-radius:50%;background:var(--orb);box-shadow:var(--orbGlow)"></div>
+<div style="position:absolute;left:62px;bottom:152px;width:180px;height:76px;background:var(--roof);clip-path:polygon(50% 0,100% 100%,0 100%)"></div>
+<sc-if value="{{ hasLuces }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:78px;bottom:146px;width:148px;display:flex;justify-content:space-between"><div data-twinkle="0" style="width:6px;height:6px;border-radius:50%;background:var(--lightOn);box-shadow:0 0 8px var(--lightOn)"></div><div data-twinkle="300" style="width:6px;height:6px;border-radius:50%;background:var(--lightOn);box-shadow:0 0 8px var(--lightOn)"></div><div data-twinkle="600" style="width:6px;height:6px;border-radius:50%;background:var(--lightOn);box-shadow:0 0 8px var(--lightOn)"></div><div data-twinkle="900" style="width:6px;height:6px;border-radius:50%;background:var(--lightOn);box-shadow:0 0 8px var(--lightOn)"></div><div data-twinkle="1200" style="width:6px;height:6px;border-radius:50%;background:var(--lightOn);box-shadow:0 0 8px var(--lightOn)"></div><div data-twinkle="1500" style="width:6px;height:6px;border-radius:50%;background:var(--lightOn);box-shadow:0 0 8px var(--lightOn)"></div></div></sc-if>
+<div style="position:absolute;left:80px;bottom:50px;width:144px;height:104px;background:var(--wall)"></div>
+<div style="position:absolute;left:96px;bottom:96px;width:32px;height:32px;border-radius:50%;background:var(--win);box-shadow:var(--winGlow)"></div>
+<div style="position:absolute;left:50px;right:60px;bottom:46px;height:6px;border-radius:3px;background:var(--soil)"></div>
+<div onClick="{{ toJardin }}" style="position:absolute;left:156px;bottom:50px;width:44px;height:68px;border-radius:22px 22px 0 0;background:var(--door);cursor:pointer" style-active="filter:brightness(1.15)"><div style="position:absolute;right:8px;top:36px;width:5px;height:5px;border-radius:50%;background:var(--accent)"></div></div>
+<div style="position:absolute;left:146px;bottom:124px;padding:3px 8px;border-radius:8px;background:var(--surface);color:var(--muted);font-size:11px;font-weight:700;pointer-events:none">Al jardín</div>
+<sc-if value="{{ hasMaceta }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:52px;bottom:52px;width:24px;height:20px;border-radius:2px 2px 9px 9px;background:var(--pot)"></div><div style="position:absolute;left:54px;bottom:70px;width:20px;height:16px;border-radius:50%;background:var(--stem)"></div></sc-if>
+<div onClick="{{ mailboxTap }}" style="position:absolute;left:262px;bottom:50px;width:84px;height:200px;cursor:pointer">
+<div style="position:absolute;left:38px;bottom:0;width:6px;height:72px;background:var(--post)"></div>
+<div style="position:absolute;left:12px;bottom:68px;width:58px;height:42px;border-radius:24px 24px 6px 6px;background:var(--mail)"></div>
+<div style="position:absolute;left:26px;bottom:80px;width:30px;height:4px;border-radius:2px;background:var(--mailSlot)"></div>
+<sc-if value="{{ hasNew }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;left:68px;bottom:92px;width:4px;height:24px;background:var(--flag)"></div><div data-bob="1" style="position:absolute;left:-10px;bottom:124px;display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:var(--accent);color:var(--onAccent);font-size:13px;font-weight:700;white-space:nowrap;box-shadow:var(--badgeGlow)"><div style="width:7px;height:7px;border-radius:50%;background:var(--onAccent)"></div>Nueva carta</div></sc-if>
+</div>
+</div>
+<div style="margin:0 16px 16px;padding:16px 16px 16px 18px;border-radius:22px;background:var(--surface);border:1px solid var(--line);display:flex;align-items:center;gap:14px;box-shadow:var(--shadow)">
+<div style="position:relative;width:50px;height:36px;flex:none;border-radius:4px;background:var(--env)"><div style="position:absolute;inset:0;background:var(--envFlap);clip-path:polygon(0 0,100% 0,50% 58%);border-radius:4px"></div></div>
+<div style="flex:1;min-width:0"><div style="font-family:'Young Serif',serif;font-size:17px;line-height:1.25">{{ letterTitle }}</div><div style="font-size:13px;color:var(--muted);margin-top:3px">{{ letterSub }}</div></div>
+<div onClick="{{ letterAction }}" style="height:48px;padding:0 18px;border-radius:24px;background:var(--accent);color:var(--onAccent);font-weight:700;font-size:15px;display:flex;align-items:center;cursor:pointer;flex:none" style-active="transform:scale(.95)">{{ letterBtn }}</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCarta }}" hint-placeholder-val="{{ false }}">
+<div data-screen="carta" style="flex:1;min-height:0;display:flex;flex-direction:column">
+<div style="height:64px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 12px"><div onClick="{{ cartaClose }}" style="position:relative;width:48px;height:48px;border-radius:24px;background:var(--surface);cursor:pointer"><div style="position:absolute;left:15px;top:23px;width:18px;height:2px;border-radius:1px;background:var(--ink);transform:rotate(45deg)"></div><div style="position:absolute;left:15px;top:23px;width:18px;height:2px;border-radius:1px;background:var(--ink);transform:rotate(-45deg)"></div></div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">{{ cartaHead }}</div><div style="width:48px"></div></div>
+<sc-if value="{{ envClosed }}" hint-placeholder-val="{{ true }}">
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;padding:0 24px 60px">
+<div onClick="{{ openEnvelope }}" data-bob="1" style="position:relative;width:300px;height:200px;perspective:900px;cursor:pointer">
+<div style="position:absolute;inset:0;border-radius:10px;background:var(--envBack)"></div>
+<div style="position:absolute;left:18px;right:18px;top:12px;height:172px;border-radius:6px;background:var(--paper);z-index:1;transform:translateY({{ paperY }}px);transition:transform .7s cubic-bezier(.2,.8,.2,1) .35s;display:flex;flex-direction:column;gap:10px;padding:26px 22px;box-sizing:border-box"><div style="height:6px;width:70%;border-radius:3px;background:#e6dccb"></div><div style="height:6px;width:90%;border-radius:3px;background:#e6dccb"></div><div style="height:6px;width:60%;border-radius:3px;background:#e6dccb"></div></div>
+<div style="position:absolute;inset:0;border-radius:10px;background:var(--env);z-index:2;clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%)"></div>
+<div style="position:absolute;left:0;right:0;top:0;height:116px;background:var(--envFlap);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:50% 0;transform:rotateX({{ flapDeg }}deg);transition:transform .55s ease-in-out;z-index:{{ flapZ }}"></div>
+<div style="position:absolute;left:132px;top:92px;width:36px;height:36px;border-radius:50%;background:var(--accent);z-index:4;opacity:{{ sealOp }};transition:opacity .2s;box-shadow:0 2px 6px rgba(0,0,0,.15)"></div>
+</div>
+<div style="text-align:center;display:flex;flex-direction:column;gap:6px"><div style="font-family:'Young Serif',serif;font-size:24px">Tienes una carta</div><div style="font-size:15px;color:var(--muted)">Toca el sobre para abrirla</div></div>
+</div>
+</sc-if>
+<sc-if value="{{ envOpen }}" hint-placeholder-val="{{ false }}">
+<div style="flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:4px 20px 20px;display:flex;flex-direction:column;gap:24px">
+<div data-enter="0" style="background:var(--paper);color:#2e2823;border-radius:8px 8px 22px 22px;padding:28px 24px 24px;display:flex;flex-direction:column;gap:16px;box-shadow:0 12px 32px rgba(20,14,30,.12)">
+<div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6b6158">Carta nº {{ letterNum }}</div>
+<div style="font-family:'Young Serif',serif;font-size:26px;line-height:1.3;text-wrap:pretty">“{{ letterFrase }}”</div>
+<div style="height:1px;background:#e6dccb"></div>
+<div style="font-size:16px;line-height:1.6;color:#4a423b;text-wrap:pretty">{{ letterReflexion }}</div>
+<div style="font-style:italic;font-size:14px;color:#6b6158">Con cariño, alguien que también está aprendiendo.</div>
+</div>
+<sc-if value="{{ showChooseQ }}" hint-placeholder-val="{{ true }}"><div data-enter="250" style="text-align:center;font-family:'Young Serif',serif;font-size:24px">¿Qué quieres cultivar hoy?</div></sc-if>
+</div>
+<div style="padding:0 20px 20px"><div onClick="{{ cartaNext }}" style="height:56px;border-radius:28px;background:var(--accent);color:var(--onAccent);font-weight:700;font-size:15px;letter-spacing:.1em;display:flex;align-items:center;justify-content:center;cursor:pointer" style-active="transform:scale(.97)">{{ cartaBtn }}</div></div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCartas }}" hint-placeholder-val="{{ false }}">
+<div data-screen="cartas" style="flex:1;min-height:0;display:flex;flex-direction:column">
+<div style="height:64px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 12px"><div onClick="{{ goCasa }}" style="position:relative;width:48px;height:48px;border-radius:24px;background:var(--surface);cursor:pointer"><div style="position:absolute;left:20px;top:18px;width:11px;height:11px;border-left:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg)"></div></div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Casa</div><div style="width:48px"></div></div>
+<div style="padding:0 24px 16px"><div style="font-family:'Young Serif',serif;font-size:30px;line-height:1.15">Mis cartas</div><div style="font-size:15px;color:var(--muted);margin-top:6px">{{ lettersSub }}</div></div>
+<div style="flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:0 16px 20px;display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{ letterList }}" as="c" hint-placeholder-count="3">
+<div onClick="{{ c.onOpen }}" data-enter="{{ c.d }}" style="position:relative;padding:18px 20px 18px 22px;border-radius:8px 8px 20px 20px;background:var(--paper);color:#2e2823;display:flex;flex-direction:column;gap:8px;cursor:pointer;box-shadow:0 6px 18px rgba(20,14,30,.08)" style-active="transform:scale(.98)">
+<div style="display:flex;justify-content:space-between;gap:12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6b6158"><div>Carta nº {{ c.num }}</div><div style="letter-spacing:0;text-transform:none">{{ c.date }}</div></div>
+<div style="font-family:'Young Serif',serif;font-size:19px;line-height:1.35;text-wrap:pretty">“{{ c.frase }}”</div>
+<div style="font-size:13px;font-weight:700;color:#a9553a">Leer carta</div>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isElegir }}" hint-placeholder-val="{{ false }}">
+<div data-screen="elegir" style="flex:1;min-height:0;display:flex;flex-direction:column">
+<div style="height:64px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 12px"><div onClick="{{ goCasa }}" style="position:relative;width:48px;height:48px;border-radius:24px;background:var(--surface);cursor:pointer"><div style="position:absolute;left:15px;top:23px;width:18px;height:2px;border-radius:1px;background:var(--ink);transform:rotate(45deg)"></div><div style="position:absolute;left:15px;top:23px;width:18px;height:2px;border-radius:1px;background:var(--ink);transform:rotate(-45deg)"></div></div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Cultivar</div><div style="width:48px"></div></div>
+<div style="padding:0 24px 18px"><div style="font-family:'Young Serif',serif;font-size:30px;line-height:1.15">¿Qué quieres cultivar hoy?</div><div style="font-size:15px;color:var(--muted);margin-top:6px">Elige un aspecto de ti.</div></div>
+<div style="flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:0 16px 20px;display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{ aspectOpts }}" as="a" hint-placeholder-count="4">
+<div onClick="{{ a.onPick }}" style="display:flex;align-items:center;gap:16px;padding:14px 16px 14px 14px;border-radius:24px;background:var(--surface);border:2px solid {{ a.border }};cursor:pointer;transition:border-color .2s">
+<div data-flower="1" style="width:76px;height:76px;flex:none;border-radius:38px;background:var(--surface2);display:flex;align-items:flex-end;justify-content:center;overflow:hidden"><div style="transform:scale(.82);transform-origin:50% 100%;margin-bottom:-6px"><dc-import name="Planta" tipo="{{ a.id }}" etapa="{{ 3 }}" hint-size="40px,84px"></dc-import></div></div>
+<div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:50%;background:{{ a.col }}"></div><div style="font-family:'Young Serif',serif;font-size:21px;line-height:1.2;white-space:nowrap">{{ a.name }}</div></div><div style="font-size:14px;line-height:1.4;color:var(--muted);margin-top:4px;text-wrap:pretty">{{ a.desc }}</div></div>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isReto }}" hint-placeholder-val="{{ false }}">
+<div data-screen="reto" style="flex:1;min-height:0;display:flex;flex-direction:column">
+<div style="height:64px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 12px"><div onClick="{{ backElegir }}" style="position:relative;width:48px;height:48px;border-radius:24px;background:var(--surface);cursor:pointer"><div style="position:absolute;left:20px;top:18px;width:11px;height:11px;border-left:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg)"></div></div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Reto</div><div style="width:48px"></div></div>
+<div style="flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:4px 24px 16px;display:flex;flex-direction:column;gap:18px">
+<div style="align-self:flex-start;display:flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:18px;background:var(--surface);border:1px solid var(--line);font-size:14px;font-weight:700"><div style="width:10px;height:10px;border-radius:50%;background:{{ retoCol }}"></div>{{ retoName }}</div>
+<div><sc-if value="{{ retoHasPre }}" hint-placeholder-val="{{ false }}"><div style="font-size:16px;color:var(--muted);margin-bottom:6px">Completa:</div></sc-if><div style="font-family:'Young Serif',serif;font-size:28px;line-height:1.25;text-wrap:pretty">{{ retoPrompt }}</div></div>
+<div style="padding:16px 18px;border-radius:22px;background:var(--surface);border:1.5px solid var(--line);display:flex;flex-direction:column;gap:6px">
+<sc-if value="{{ retoHasPrefix }}" hint-placeholder-val="{{ false }}"><div style="font-size:17px;font-weight:700">Hoy soy capaz de</div></sc-if>
+<textarea value="{{ answer }}" onChange="{{ onAnswer }}" placeholder="{{ retoPh }}" rows="4" style="width:100%;border:none;outline:none;resize:none;background:transparent;color:var(--ink);font-family:Karla,sans-serif;font-size:18px;line-height:1.5;padding:0;user-select:text;-webkit-user-select:text"></textarea>
+</div>
+<div style="font-size:14px;line-height:1.5;color:var(--muted)">No hay respuestas correctas. Tómate unos segundos para pensarlo.</div>
+</div>
+<div style="padding:0 20px 20px"><div onClick="{{ cultivar }}" style="height:56px;border-radius:28px;background:var(--accent);color:var(--onAccent);font-weight:700;font-size:15px;letter-spacing:.1em;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:{{ cultOp }};transition:opacity .2s" style-active="transform:scale(.97)">CULTIVAR</div></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCrecer }}" hint-placeholder-val="{{ false }}">
+<div data-screen="crecer" style="flex:1;min-height:0;display:flex;flex-direction:column">
+<div style="height:64px;flex:none;display:flex;align-items:center;justify-content:center"><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">{{ growAspName }}</div></div>
+<div style="position:relative;margin:0 24px;height:430px;flex:none;border-radius:180px 180px 28px 28px;background:var(--archBg);box-shadow:var(--archRim);overflow:hidden">
+<div style="position:absolute;left:50%;top:44px;width:44px;height:44px;margin-left:-22px;border-radius:50%;background:var(--orb);box-shadow:var(--orbGlow)"></div>
+<div style="position:absolute;left:-40px;right:-40px;bottom:-90px;height:240px;border-radius:50%;background:var(--ground)"></div>
+<div data-grow="1" style="position:absolute;left:50%;bottom:78px;width:40px;margin-left:-20px;height:84px"><div style="transform:scale(3);transform-origin:50% 100%"><dc-import name="Planta" tipo="{{ growAsp }}" etapa="{{ growStage }}" hint-size="40px,84px"></dc-import></div></div>
+<sc-if value="{{ sparkOn }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:50%;top:150px;width:0;height:0">
+<div data-spark="-90,-60" style="position:absolute;width:8px;height:8px;border-radius:50%;background:var(--lightOn)"></div>
+<div data-spark="90,-50" style="position:absolute;width:6px;height:6px;border-radius:50%;background:var(--lightOn)"></div>
+<div data-spark="-110,20" style="position:absolute;width:6px;height:6px;border-radius:50%;background:{{ growCol }}"></div>
+<div data-spark="110,30" style="position:absolute;width:8px;height:8px;border-radius:50%;background:{{ growCol }}"></div>
+<div data-spark="-40,-110" style="position:absolute;width:5px;height:5px;border-radius:50%;background:var(--lightOn)"></div>
+<div data-spark="50,-105" style="position:absolute;width:7px;height:7px;border-radius:50%;background:{{ growCol }}"></div>
+<div data-spark="-70,80" style="position:absolute;width:5px;height:5px;border-radius:50%;background:var(--lightOn)"></div>
+<div data-spark="75,85" style="position:absolute;width:6px;height:6px;border-radius:50%;background:var(--lightOn)"></div>
+</div>
+</sc-if>
+</div>
+<div style="display:flex;justify-content:center;gap:18px;padding:18px 0 0">
+<sc-for list="{{ growSteps }}" as="s" hint-placeholder-count="4">
+<div style="display:flex;flex-direction:column;align-items:center;gap:6px;width:62px;opacity:{{ s.op }};transition:opacity .3s"><div style="width:12px;height:12px;border-radius:50%;box-sizing:border-box;border:2px solid var(--accent);background:{{ s.fill }};transition:background .3s"></div><div style="font-size:12px;font-weight:700;color:var(--ink)">{{ s.label }}</div></div>
+</sc-for>
+</div>
+<div style="flex:1;padding:14px 32px 0;text-align:center;display:flex;flex-direction:column;gap:6px"><div style="font-family:'Young Serif',serif;font-size:21px;line-height:1.3;text-wrap:pretty">{{ growTitle }}</div><div style="font-size:14px;line-height:1.5;color:var(--muted);text-wrap:pretty">{{ growSub }}</div></div>
+<sc-if value="{{ growDone }}" hint-placeholder-val="{{ false }}"><div data-enter="0" style="padding:0 20px 20px"><div onClick="{{ toDiscover }}" style="height:56px;border-radius:28px;background:var(--accent);color:var(--onAccent);font-weight:700;font-size:15px;letter-spacing:.1em;display:flex;align-items:center;justify-content:center;cursor:pointer" style-active="transform:scale(.97)">CONTINUAR</div></div></sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDescubrir }}" hint-placeholder-val="{{ false }}">
+<div data-screen="descubrir" style="flex:1;min-height:0;display:flex;flex-direction:column">
+<div style="height:64px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 12px"><div onClick="{{ goCasa }}" style="position:relative;width:48px;height:48px;border-radius:24px;background:var(--surface);cursor:pointer"><div style="position:absolute;left:15px;top:23px;width:18px;height:2px;border-radius:1px;background:var(--ink);transform:rotate(45deg)"></div><div style="position:absolute;left:15px;top:23px;width:18px;height:2px;border-radius:1px;background:var(--ink);transform:rotate(-45deg)"></div></div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Una historia</div><div style="width:48px"></div></div>
+<div style="flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:0 20px 16px;display:flex;flex-direction:column;gap:14px">
+<div style="font-family:'Young Serif',serif;font-size:25px;line-height:1.3;text-align:center;padding:0 8px 6px;text-wrap:pretty">Mientras cultivas algo en ti, descubre una historia.</div>
+<sc-if value="{{ seedClosed }}" hint-placeholder-val="{{ true }}">
+<div style="height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px">
+<div style="position:relative;width:160px;height:160px;display:flex;align-items:center;justify-content:center">
+<div data-ring="0" style="pointer-events:none;position:absolute;inset:20px;border-radius:50%;border:2px solid var(--accent)"></div>
+<div data-ring="1000" style="pointer-events:none;position:absolute;inset:20px;border-radius:50%;border:2px solid var(--accent)"></div>
+<div onClick="{{ openSeed }}" style="position:relative;z-index:2;cursor:pointer;padding:30px;touch-action:manipulation"><div data-pulse="1" style="width:62px;height:80px;border-radius:50% 50% 50% 50% / 58% 58% 42% 42%;background:radial-gradient(circle at 35% 30%,#fff3d0 0 10%,var(--accent) 60%);box-shadow:var(--seedGlow)"></div></div>
+</div>
+<div onClick="{{ openSeed }}" style="font-size:15px;color:var(--muted);white-space:nowrap;cursor:pointer;padding:10px 16px">Toca la semilla</div>
+</div>
+</sc-if>
+<sc-if value="{{ seedOpen }}" hint-placeholder-val="{{ false }}">
+<div data-enter="0" style="padding:18px 20px;border-radius:22px;background:var(--surface);border:1px solid var(--line)"><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Pista 1</div><div style="font-family:'Young Serif',serif;font-size:19px;line-height:1.4;margin-top:8px;text-wrap:pretty">{{ clue1 }}</div></div>
+<sc-if value="{{ hasClue2 }}" hint-placeholder-val="{{ false }}"><div data-enter="0" style="padding:18px 20px;border-radius:22px;background:var(--surface);border:1px solid var(--line)"><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Pista 2</div><div style="font-family:'Young Serif',serif;font-size:19px;line-height:1.4;margin-top:8px;text-wrap:pretty">{{ clue2 }}</div></div></sc-if>
+<sc-if value="{{ canMoreClue }}" hint-placeholder-val="{{ true }}"><div onClick="{{ moreClue }}" style="align-self:flex-start;height:44px;padding:0 18px;border-radius:22px;border:1.5px solid var(--line2);display:flex;align-items:center;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap">Ver otra pista</div></sc-if>
+<div data-enter="120" style="display:flex;flex-direction:column;gap:10px;padding-top:6px">
+<div style="font-size:15px;font-weight:700">¿Sabes quién es?</div>
+<sc-for list="{{ guessOpts }}" as="o" hint-placeholder-count="3">
+<div onClick="{{ o.onTap }}" style="height:54px;padding:0 18px;border-radius:18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;background:{{ o.bg }};color:{{ o.fg }};border:1.5px solid {{ o.bd }};transition:background .25s,color .25s;font-size:16px;font-weight:700"><div style="text-decoration:{{ o.deco }}">{{ o.name }}</div><div style="font-size:13px;font-weight:700">{{ o.note }}</div></div>
+</sc-for>
+</div>
+</sc-if>
+</div>
+<sc-if value="{{ seedOpen }}" hint-placeholder-val="{{ false }}"><div style="padding:0 20px 20px"><div onClick="{{ toMujer }}" style="height:56px;border-radius:28px;background:var(--accent);color:var(--onAccent);font-weight:700;font-size:15px;letter-spacing:.1em;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:{{ discOp }};transition:opacity .3s" style-active="transform:scale(.97)">DESCUBRIR HISTORIA</div></div></sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPuzzle }}" hint-placeholder-val="{{ false }}">
+<div data-screen="puzzle" style="flex:1;min-height:0;display:flex;flex-direction:column">
+<div style="height:64px;flex:none;display:flex;align-items:center;justify-content:center"><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Arma su retrato</div></div>
+<div style="flex:1;min-height:0;padding:0 20px 16px;display:flex;flex-direction:column;gap:18px">
+<div style="font-family:'Young Serif',serif;font-size:22px;line-height:1.3;text-align:center;padding:0 12px;text-wrap:pretty">{{ pzTitle }}</div>
+<div data-pzframe="1" style="position:relative;width:100%;height:420px;flex:none;border-radius:186px 186px 22px 22px;overflow:hidden;background:var(--surface);border:1px solid var(--line);box-sizing:border-box;touch-action:none;user-select:none">
+<sc-for list="{{ pzTiles }}" as="t" hint-placeholder-count="9">
+<div data-piece="{{ t.p }}" onPointerDown="{{ t.onDown }}" style="position:absolute;left:{{ t.x }};top:{{ t.y }};width:33.3334%;height:33.3334%;padding:{{ pzGap }};box-sizing:border-box;transition:left .28s cubic-bezier(.2,.8,.2,1),top .28s cubic-bezier(.2,.8,.2,1),padding .4s;cursor:grab;touch-action:none"><div style="position:relative;width:100%;height:100%;overflow:hidden;border-radius:{{ pzRad }};transition:border-radius .4s"><img src="{{ cw.imagen }}" alt="" draggable="false" style="position:absolute;left:{{ t.il }};top:{{ t.it }};width:300%;height:300%;object-fit:cover;object-position:{{ cw.encuadre }};pointer-events:none"></img><div style="position:absolute;inset:0;border-radius:inherit;box-shadow:{{ t.ring }};pointer-events:none;transition:box-shadow .2s"></div></div></div>
+</sc-for>
+</div>
+<div style="font-size:14px;line-height:1.5;color:var(--muted);text-align:center;text-wrap:pretty">{{ pzSub }}</div>
+</div>
+<div style="padding:0 20px 20px"><div onClick="{{ pzNext }}" style="height:56px;border-radius:28px;background:var(--accent);color:var(--onAccent);font-weight:700;font-size:15px;letter-spacing:.1em;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:{{ pzBtnOp }};transition:opacity .3s" style-active="transform:scale(.97)">VER SU HISTORIA</div></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isMujer }}" hint-placeholder-val="{{ false }}">
+<div data-screen="mujer" style="flex:1;min-height:0;display:flex;flex-direction:column">
+<div style="height:64px;flex:none;display:flex;align-items:center;justify-content:center"><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Historia descubierta</div></div>
+<div style="flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:0 20px 20px">
+<div data-card="1" style="display:flex;flex-direction:column;gap:16px">
+<div data-pop="1" style="height:230px;border-radius:115px 115px 20px 20px;background:{{ cw.bg }};display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><div style="font-family:'Young Serif',serif;font-size:76px;color:{{ cw.fg }}">{{ cw.iniciales }}</div><sc-if value="{{ cw.hasFoto }}" hint-placeholder-val="{{ false }}"><img src="{{ cw.imagen }}" alt="{{ cw.nombre }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ cw.encuadre }}"></img></sc-if></div>
+<div data-enter="150" style="font-family:'Young Serif',serif;font-size:30px;letter-spacing:.02em;line-height:1.1">{{ cw.nameUpper }}</div>
+<div data-enter="220" style="display:flex;flex-wrap:wrap;gap:8px">
+<div style="display:flex;align-items:center;gap:7px;height:32px;padding:0 12px;border-radius:16px;background:var(--surface);border:1px solid var(--line);font-size:13px;font-weight:700"><div style="width:9px;height:9px;border-radius:50%;background:{{ cw.catDot }}"></div>{{ cw.catLabel }}</div>
+<div style="display:flex;align-items:center;height:32px;padding:0 12px;border-radius:16px;background:var(--surface);border:1px solid var(--line);font-size:13px">{{ cw.pais }}</div>
+<div style="display:flex;align-items:center;height:32px;padding:0 12px;border-radius:16px;background:var(--surface);border:1px solid var(--line);font-size:13px">{{ cw.epoca }}</div>
+</div>
+<div data-enter="300"><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Su historia</div><div style="font-size:16px;line-height:1.6;text-wrap:pretty">{{ cw.historia }}</div></div>
+<div data-enter="380"><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Lo que representa</div><div style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ cw.rasgosV }}" as="r" hint-placeholder-count="2"><div style="display:flex;align-items:center;gap:7px;height:36px;padding:0 14px;border-radius:18px;background:var(--surface);border:1px solid var(--line);font-size:14px;font-weight:700"><div style="width:10px;height:10px;border-radius:50%;background:{{ r.col }}"></div>{{ r.name }}</div></sc-for></div></div>
+</div>
+</div>
+<div style="padding:0 20px 20px"><div onClick="{{ guardar }}" style="height:56px;border-radius:28px;background:var(--accent);color:var(--onAccent);font-weight:700;font-size:15px;letter-spacing:.08em;display:flex;align-items:center;justify-content:center;cursor:pointer" style-active="transform:scale(.97)">GUARDAR EN MIS HISTORIAS</div></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isJardin }}" hint-placeholder-val="{{ false }}">
+<div data-screen="jardin" style="flex:1;min-height:0;display:flex;flex-direction:column">
+<div style="padding:18px 24px 0">
+<div style="font-family:'Young Serif',serif;font-size:32px;line-height:1.1">Tu jardín</div>
+<div style="font-style:italic;font-size:15px;line-height:1.45;color:var(--muted);margin-top:6px;max-width:320px;text-wrap:pretty">Así como cada mujer tiene su propia historia, cada jardín crece de una manera diferente.</div>
+</div>
+<div style="position:relative;margin:12px 16px 0;height:440px;flex:none;border-radius:180px 180px 28px 28px;background:var(--archBg);box-shadow:var(--archRim);overflow:hidden">
+<div style="position:absolute;left:50%;top:40px;width:40px;height:40px;margin-left:-20px;border-radius:50%;background:var(--orb);box-shadow:var(--orbGlow)"></div>
+<div style="opacity:var(--stars)"><div data-twinkle="0" style="position:absolute;left:70px;top:170px;width:5px;height:5px;border-radius:50%;background:#f5e3a0;box-shadow:0 0 12px 4px rgba(245,227,160,.5)"></div><div data-twinkle="900" style="position:absolute;left:300px;top:140px;width:4px;height:4px;border-radius:50%;background:#f5e3a0;box-shadow:0 0 12px 4px rgba(245,227,160,.5)"></div><div data-twinkle="1700" style="position:absolute;left:210px;top:190px;width:4px;height:4px;border-radius:50%;background:#f5e3a0;box-shadow:0 0 12px 4px rgba(245,227,160,.4)"></div></div>
+<sc-if value="{{ hasLuces }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ lights }}" as="l" hint-placeholder-count="0"><div data-twinkle="{{ l.d }}" style="position:absolute;left:{{ l.x }}px;top:{{ l.y }}px;width:7px;height:7px;border-radius:50%;background:var(--lightOn);box-shadow:0 0 10px var(--lightOn)"></div></sc-for></sc-if>
+<div style="position:absolute;left:-40px;right:-40px;bottom:-80px;height:320px;border-radius:50%;background:var(--ground)"></div>
+<sc-if value="{{ gardenEmpty }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:40px;right:40px;top:110px;text-align:center;font-family:'Young Serif',serif;font-size:18px;line-height:1.35;color:var(--ink)">Tu jardín está esperando su primera planta.</div></sc-if>
+<sc-for list="{{ items }}" as="p" hint-placeholder-count="0">
+<div data-item="{{ p.id }}" onPointerDown="{{ p.onDown }}" style="position:absolute;left:{{ p.x }}px;top:{{ p.y }}px;z-index:{{ p.z }};transform:translate(-50%,-100%) scale({{ p.sc }});transform-origin:50% 100%;touch-action:none;cursor:grab;transition:transform .15s;filter:{{ p.shadow }}">
+<div data-hl="{{ p.id }}" style="transform-origin:50% 100%">
+<sc-if value="{{ p.plant }}" hint-placeholder-val="{{ false }}"><dc-import name="Planta" tipo="{{ p.aspect }}" etapa="{{ p.stage }}" hint-size="40px,84px"></dc-import></sc-if>
+<sc-if value="{{ p.piedras }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:46px;height:16px"><div style="position:absolute;left:0;bottom:0;width:22px;height:13px;border-radius:50%;background:var(--stone)"></div><div style="position:absolute;left:16px;bottom:0;width:18px;height:10px;border-radius:50%;background:var(--stone2)"></div><div style="position:absolute;left:32px;bottom:0;width:14px;height:8px;border-radius:50%;background:var(--stone)"></div></div></sc-if>
+<sc-if value="{{ p.mariposa }}" hint-placeholder-val="{{ false }}"><div data-flutter="1" style="position:relative;width:30px;height:22px"><div style="position:absolute;left:1px;top:0;width:13px;height:12px;border-radius:50%;background:var(--co)"></div><div style="position:absolute;left:3px;top:10px;width:10px;height:10px;border-radius:50%;background:var(--cg)"></div><div style="position:absolute;right:1px;top:0;width:13px;height:12px;border-radius:50%;background:var(--co)"></div><div style="position:absolute;right:3px;top:10px;width:10px;height:10px;border-radius:50%;background:var(--cg)"></div><div style="position:absolute;left:14px;top:2px;width:2px;height:18px;border-radius:1px;background:var(--deco)"></div></div></sc-if>
+<sc-if value="{{ p.maceta }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:28px;height:40px"><div style="position:absolute;left:4px;top:0;width:20px;height:20px;border-radius:50%;background:var(--stem)"></div><div style="position:absolute;left:10px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--co)"></div><div style="position:absolute;left:0;bottom:0;width:28px;height:22px;background:var(--pot);clip-path:polygon(0 0,100% 0,84% 100%,16% 100%)"></div></div></sc-if>
+<sc-if value="{{ p.flores }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:50px;height:22px"><div style="position:absolute;left:2px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--cg)"></div><div style="position:absolute;left:14px;top:0;width:7px;height:7px;border-radius:50%;background:var(--co)"></div><div style="position:absolute;left:26px;top:8px;width:8px;height:8px;border-radius:50%;background:var(--cl)"></div><div style="position:absolute;left:38px;top:3px;width:7px;height:7px;border-radius:50%;background:var(--cr)"></div><div style="position:absolute;left:0;right:0;bottom:0;height:7px;border-radius:50% 50% 0 0;background:var(--stem)"></div></div></sc-if>
+<sc-if value="{{ p.arbol }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:76px;height:130px"><div style="position:absolute;left:33px;bottom:0;width:10px;height:66px;border-radius:3px;background:var(--trunk)"></div><div style="position:absolute;left:0;top:0;width:76px;height:76px;border-radius:50%;background:var(--canopy)"></div><div style="position:absolute;left:10px;top:34px;width:40px;height:40px;border-radius:50%;background:var(--canopy2)"></div></div></sc-if>
+<sc-if value="{{ p.brujula }}" hint-placeholder-val="{{ false }}"><div style="width:30px;height:30px;border-radius:50%;border:2px solid var(--deco);background:var(--decoFill);box-sizing:border-box;display:flex;align-items:center;justify-content:center"><div style="width:6px;height:16px;background:var(--accent);transform:rotate(35deg);border-radius:3px 3px 0 0"></div></div></sc-if>
+<sc-if value="{{ p.caballete }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:34px;height:46px"><div style="position:absolute;left:8px;top:18px;width:2px;height:28px;background:var(--muted);transform:rotate(12deg)"></div><div style="position:absolute;left:24px;top:18px;width:2px;height:28px;background:var(--muted);transform:rotate(-12deg)"></div><div style="position:absolute;left:3px;top:0;width:28px;height:22px;border-radius:2px;background:var(--co);border:2px solid var(--deco);box-sizing:border-box"></div></div></sc-if>
+<sc-if value="{{ p.matraz }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:28px;height:38px"><div style="position:absolute;left:9px;top:0;width:10px;height:14px;border:2px solid var(--deco);border-bottom:none;box-sizing:border-box;background:var(--decoFill)"></div><div style="position:absolute;left:0;bottom:0;width:28px;height:28px;border-radius:50%;border:2px solid var(--deco);box-sizing:border-box;overflow:hidden;background:var(--decoFill)"><div style="position:absolute;left:0;right:0;bottom:0;height:11px;background:var(--cl)"></div></div></div></sc-if>
+<sc-if value="{{ p.patineta }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:44px;height:14px"><div style="position:absolute;left:0;top:0;width:44px;height:7px;border-radius:4px;background:var(--cr)"></div><div style="position:absolute;left:7px;bottom:0;width:7px;height:7px;border-radius:50%;background:var(--deco)"></div><div style="position:absolute;right:7px;bottom:0;width:7px;height:7px;border-radius:50%;background:var(--deco)"></div></div></sc-if>
+<sc-if value="{{ p.banderin }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:30px;height:56px"><div style="position:absolute;left:0;top:0;width:2px;height:56px;background:var(--deco)"></div><div style="position:absolute;left:2px;top:2px;width:26px;height:18px;background:var(--cg);clip-path:polygon(0 0,100% 50%,0 100%)"></div></div></sc-if>
+<sc-if value="{{ p.farol }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:20px;height:44px"><div style="position:absolute;left:9px;top:0;width:2px;height:24px;background:var(--deco)"></div><div style="position:absolute;left:2px;top:20px;width:16px;height:20px;border-radius:5px;background:var(--cg);border:2px solid var(--deco);box-sizing:border-box;box-shadow:var(--glowG)"></div><div style="position:absolute;left:0;bottom:0;width:20px;height:4px;border-radius:2px;background:var(--deco)"></div></div></sc-if>
+<sc-if value="{{ p.engranaje }}" hint-placeholder-val="{{ false }}"><div style="width:30px;height:30px;border-radius:50%;border:6px dotted var(--deco);box-sizing:border-box;display:flex;align-items:center;justify-content:center"><div style="width:8px;height:8px;border-radius:50%;background:var(--cl)"></div></div></sc-if>
+<sc-if value="{{ p.libro }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:38px;height:20px"><div style="position:absolute;left:1px;top:2px;width:18px;height:16px;border:2px solid var(--deco);box-sizing:border-box;background:var(--decoFill);transform:skewY(10deg)"></div><div style="position:absolute;right:1px;top:2px;width:18px;height:16px;border:2px solid var(--deco);box-sizing:border-box;background:var(--decoFill);transform:skewY(-10deg)"></div></div></sc-if>
+<sc-if value="{{ p.columna }}" hint-placeholder-val="{{ false }}"><div style="position:relative;width:24px;height:46px"><div style="position:absolute;left:0;top:0;width:24px;height:6px;background:var(--decoFill);border:2px solid var(--deco);box-sizing:border-box"></div><div style="position:absolute;left:5px;top:6px;width:14px;height:34px;background:repeating-linear-gradient(90deg,var(--decoFill) 0 3px,var(--line2) 3px 4px);border-left:2px solid var(--deco);border-right:2px solid var(--deco);box-sizing:border-box"></div><div style="position:absolute;left:0;bottom:0;width:24px;height:6px;background:var(--decoFill);border:2px solid var(--deco);box-sizing:border-box"></div></div></sc-if>
+</div>
+</div>
+</sc-for>
+</div>
+<div style="padding:12px 16px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<sc-for list="{{ aspectCards }}" as="c" hint-placeholder-count="4">
+<div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:var(--surface);border:1px solid var(--line)"><div style="width:14px;height:14px;flex:none;border-radius:50%;background:{{ c.col }}"></div><div style="min-width:0"><div style="font-size:14px;font-weight:700">{{ c.name }}</div><div style="font-size:12px;color:var(--muted)">{{ c.sub }}</div></div></div>
+</sc-for>
+</div>
+<div style="padding:8px 20px 0;font-size:12px;color:var(--muted)">Mantén pulsada una planta para moverla</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isHistorias }}" hint-placeholder-val="{{ false }}">
+<div data-screen="historias" style="flex:1;min-height:0;display:flex;flex-direction:column">
+<div style="padding:18px 24px 12px"><div style="font-family:'Young Serif',serif;font-size:28px;letter-spacing:.04em;line-height:1.1">MIS HISTORIAS</div><div style="font-size:15px;color:var(--muted);margin-top:6px">Has descubierto {{ nDisc }} de {{ nTotal }} historias.</div></div>
+<div style="display:flex;gap:8px;overflow-x:auto;padding:0 16px 12px;flex:none;scrollbar-width:none">
+<sc-for list="{{ catChips }}" as="k" hint-placeholder-count="6">
+<div onClick="{{ k.onTap }}" style="flex:none;display:flex;align-items:center;gap:7px;height:40px;padding:0 14px;border-radius:20px;background:{{ k.bg }};color:{{ k.fg }};border:1.5px solid {{ k.bd }};font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap"><div style="width:8px;height:8px;border-radius:50%;background:{{ k.dot }}"></div>{{ k.label }}</div>
+</sc-for>
+</div>
+<div style="flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:2px 16px 20px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<sc-for list="{{ albumCards }}" as="w" hint-placeholder-count="6">
+<sc-if value="{{ w.known }}" hint-placeholder-val="{{ false }}"><div data-album="{{ w.id }}" onClick="{{ w.onOpen }}" style="padding:10px;border-radius:20px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:10px;cursor:pointer" style-active="transform:scale(.97)"><div style="position:relative;overflow:hidden;height:128px;border-radius:64px 64px 12px 12px;background:{{ w.bg }};display:flex;align-items:center;justify-content:center;font-family:'Young Serif',serif;font-size:38px;color:{{ w.fg }}">{{ w.iniciales }}<sc-if value="{{ w.hasFoto }}" hint-placeholder-val="{{ false }}"><img src="{{ w.imagen }}" alt="{{ w.nombre }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ w.encuadre }}"></img></sc-if></div><div style="padding:0 4px 4px"><div style="font-size:15px;font-weight:700;line-height:1.25">{{ w.nombre }}</div><div style="font-size:12px;color:var(--muted);margin-top:3px">{{ w.catLabel }} · {{ w.pais }}</div></div></div></sc-if>
+<sc-if value="{{ w.unknown }}" hint-placeholder-val="{{ true }}"><div onClick="{{ w.onLocked }}" style="padding:10px;border-radius:20px;border:1.5px dashed var(--line2);display:flex;flex-direction:column;gap:10px;cursor:pointer"><div style="height:128px;border-radius:64px 64px 12px 12px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-family:'Young Serif',serif;font-size:30px;color:var(--muted)">???</div><div style="padding:0 4px 4px"><div style="font-size:15px;font-weight:700;color:var(--muted)">???</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Por descubrir</div></div></div></sc-if>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isProceso }}" hint-placeholder-val="{{ false }}">
+<div data-screen="proceso" style="flex:1;min-height:0;display:flex;flex-direction:column">
+<div style="flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:18px 16px 20px;display:flex;flex-direction:column;gap:14px">
+<div style="padding:0 8px"><div style="font-family:'Young Serif',serif;font-size:28px;letter-spacing:.04em;line-height:1.1">MI PROCESO</div></div>
+<div style="padding:16px 18px;border-radius:22px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{ phrases }}" as="f" hint-placeholder-count="3"><div style="display:flex;gap:10px;align-items:baseline"><div style="width:6px;height:6px;flex:none;border-radius:50%;background:var(--accent);transform:translateY(-3px)"></div><div style="flex:1;min-width:0;font-family:'Young Serif',serif;font-size:17px;line-height:1.4">{{ f }}</div></div></sc-for>
+</div>
+<div style="padding:16px 18px;border-radius:22px;background:var(--surface);border:1px solid var(--line)">
+<div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Lo que has cultivado</div>
+<sc-for list="{{ cultRows }}" as="c" hint-placeholder-count="4"><div style="display:flex;align-items:center;gap:10px;height:40px;border-bottom:1px solid var(--line)"><div style="width:12px;height:12px;border-radius:50%;background:{{ c.col }}"></div><div style="flex:1;font-size:15px;font-weight:700">{{ c.name }}</div><div style="font-size:15px;color:var(--muted)">{{ c.times }}</div></div></sc-for>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div onClick="{{ toHistorias }}" style="padding:16px;border-radius:22px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:8px;cursor:pointer">
+<div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Tus historias</div>
+<div style="font-family:'Young Serif',serif;font-size:40px;line-height:1">{{ nDisc }}</div>
+<div style="font-size:14px;line-height:1.35">{{ discLabel }}</div>
+<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px"><sc-for list="{{ discMini }}" as="m" hint-placeholder-count="0"><div style="position:relative;overflow:hidden;width:26px;height:26px;border-radius:13px;background:{{ m.bg }};color:{{ m.fg }};font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center">{{ m.iniciales }}<sc-if value="{{ m.hasFoto }}" hint-placeholder-val="{{ false }}"><img src="{{ m.imagen }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ m.encuadre }}"></img></sc-if></div></sc-for></div>
+</div>
+<div onClick="{{ toJardin }}" style="padding:16px;border-radius:22px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:10px;cursor:pointer">
+<div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Tu jardín</div>
+<div style="position:relative;width:138px;height:160px;align-self:center;border-radius:69px 69px 12px 12px;background:var(--archBg);box-shadow:var(--archRim);overflow:hidden">
+<div style="position:absolute;left:-20px;right:-20px;bottom:-30px;height:116px;border-radius:50%;background:var(--ground)"></div>
+<sc-for list="{{ miniDots }}" as="d" hint-placeholder-count="0"><div style="position:absolute;left:{{ d.x }}px;top:{{ d.y }}px;width:{{ d.s }}px;height:{{ d.s }}px;margin:-{{ d.h }}px 0 0 -{{ d.h }}px;border-radius:{{ d.r }};background:{{ d.c }}"></div></sc-for>
+</div>
+</div>
+</div>
+<div style="display:flex;gap:12px;padding:0 6px;font-size:13px;color:var(--muted)"><div>Cartas recibidas: {{ nLetters }}</div><div>·</div><div>Retos completados: {{ nRetos }}</div></div>
+<div style="padding:14px 18px;border-radius:22px;background:var(--surface);border:1px solid var(--line);display:flex;align-items:center;justify-content:space-between">
+<div style="font-size:15px;font-weight:700">Modo</div>
+<div style="display:flex;padding:3px;border-radius:999px;background:var(--surface2);border:1px solid var(--line)">
+<div onClick="{{ setDay }}" style="height:38px;padding:0 14px;border-radius:19px;background:{{ dayPillBg }};display:flex;align-items:center;font-size:13px;font-weight:700;color:{{ dayPillFg }};cursor:pointer">Día</div>
+<div onClick="{{ setNight }}" style="height:38px;padding:0 14px;border-radius:19px;background:{{ nightPillBg }};display:flex;align-items:center;font-size:13px;font-weight:700;color:{{ nightPillFg }};cursor:pointer">Noche</div>
+</div>
+</div>
+<sc-if value="{{ showDemo }}" hint-placeholder-val="{{ true }}">
+<div style="padding:14px 18px;border-radius:22px;border:1.5px dashed var(--line2);display:flex;flex-direction:column;gap:10px">
+<div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Herramientas de prueba</div>
+<div style="display:flex;gap:8px">
+<div onClick="{{ nextDay }}" style="flex:1;height:44px;border-radius:22px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer">Pasar al día siguiente</div>
+<div onClick="{{ resetAll }}" style="flex:1;height:44px;border-radius:22px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer;color:{{ resetFg }}">{{ resetLabel }}</div>
+</div>
+</div>
+</sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isTab }}" hint-placeholder-val="{{ false }}">
+<div style="height:72px;flex:none;display:flex;background:var(--nav);border-top:1px solid var(--navLine);position:relative;z-index:5">
+<sc-for list="{{ nav }}" as="it" hint-placeholder-count="4">
+<div onClick="{{ it.onTap }}" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer">
+<div style="height:30px;padding:0 18px;border-radius:15px;background:{{ it.pill }};display:flex;align-items:center;transition:background .2s"><div style="width:{{ it.w }}px;height:{{ it.h }}px;border-radius:{{ it.r }};transform:rotate({{ it.rot }}deg);background:{{ it.fill }};border:1.5px solid {{ it.stroke }};box-sizing:border-box"></div></div>
+<div style="font-size:12px;font-weight:{{ it.fw }};color:{{ it.fg }}">{{ it.label }}</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ sheetOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:40">
+<div data-scrim="1" onClick="{{ closeSheet }}" style="position:absolute;inset:0;background:var(--scrim)"></div>
+<div data-sheet="1" style="position:absolute;left:0;right:0;bottom:0;height:90%;background:var(--bg);border-radius:28px 28px 0 0;display:flex;flex-direction:column;overflow:hidden">
+<div onPointerDown="{{ sheetDown }}" style="touch-action:none;cursor:grab;flex:none;padding:10px 20px 0">
+<div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:40px;height:4px;border-radius:2px;background:var(--line2)"></div><div style="font-size:11px;color:var(--muted)">Desliza hacia los lados para ver otra historia</div></div>
+<div data-sheetbody="1" style="display:flex;gap:16px;align-items:flex-end;padding:14px 0 12px">
+<div style="position:relative;overflow:hidden;width:110px;height:130px;flex:none;border-radius:55px 55px 14px 14px;background:{{ sw.bg }};display:flex;align-items:center;justify-content:center;font-family:'Young Serif',serif;font-size:40px;color:{{ sw.fg }}">{{ sw.iniciales }}<sc-if value="{{ sw.hasFoto }}" hint-placeholder-val="{{ false }}"><img src="{{ sw.imagen }}" alt="{{ sw.nombre }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ sw.encuadre }}"></img></sc-if></div>
+<div style="flex:1;min-width:0;padding-bottom:4px"><div style="font-family:'Young Serif',serif;font-size:24px;line-height:1.15">{{ sw.nameUpper }}</div><div style="display:flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;font-weight:700"><div style="width:9px;height:9px;border-radius:50%;background:{{ sw.catDot }}"></div>{{ sw.catLabel }}</div><div style="font-size:13px;color:var(--muted);margin-top:4px">{{ sw.pais }} · {{ sw.epoca }}</div></div>
+</div>
+</div>
+<div onClick="{{ closeSheet }}" style="position:absolute;right:14px;top:14px;width:44px;height:44px;border-radius:22px;background:var(--surface);cursor:pointer"><div style="position:absolute;left:14px;top:21px;width:16px;height:2px;border-radius:1px;background:var(--ink);transform:rotate(45deg)"></div><div style="position:absolute;left:14px;top:21px;width:16px;height:2px;border-radius:1px;background:var(--ink);transform:rotate(-45deg)"></div></div>
+<div style="flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;padding:4px 20px 28px;display:flex;flex-direction:column;gap:18px">
+<div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Su historia</div><div style="font-size:16px;line-height:1.6;text-wrap:pretty">{{ sw.historia }}</div></div>
+<div><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Lo que representa</div><div style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ sw.rasgosV }}" as="r" hint-placeholder-count="2"><div style="display:flex;align-items:center;gap:7px;height:36px;padding:0 14px;border-radius:18px;background:var(--surface);border:1px solid var(--line);font-size:14px;font-weight:700"><div style="width:10px;height:10px;border-radius:50%;background:{{ r.col }}"></div>{{ r.name }}</div></sc-for></div></div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+<div data-toast="1" style="position:absolute;left:16px;right:16px;top:12px;z-index:60;display:flex;justify-content:center;pointer-events:none"><div style="padding:12px 18px;border-radius:18px;background:var(--ink);color:var(--bg);font-size:14px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.18);text-align:center;white-space:nowrap">{{ toast }}</div></div>
+</sc-if>
+
+</div>
+</x-import>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showDemoTools&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Prototipo&quot;}}">
+const KEY = 'jardin-historias-v1';
+const ORDER = ['conf', 'amor', 'calma', 'crec'];
+const ASP = {
+  conf: { name: 'Confianza', plant: 'girasol', plural: 'girasoles', col: 'var(--cg)', desc: 'Seguridad personal, creer en una misma y atreverse a actuar.', pre: true, prompt: 'Hoy soy capaz de ______.', prefix: true, ph: 'Termina la frase…' },
+  amor: { name: 'Amor propio', plant: 'orquídea', plural: 'orquídeas', col: 'var(--co)', desc: 'Autoestima, autocuidado y trato amable hacia una misma.', prompt: 'Escribe algo que hayas hecho bien recientemente.', ph: 'Puede ser algo pequeño.' },
+  calma: { name: 'Calma', plant: 'lavanda', plural: 'lavandas', col: 'var(--cl)', desc: 'Escucha personal, bienestar y reconocimiento de necesidades.', prompt: '¿Qué necesitas hoy?', ph: 'Escribe lo primero que aparezca.' },
+  crec: { name: 'Crecimiento', plant: 'rosa', plural: 'rosas', col: 'var(--cr)', desc: 'Aprendizaje, curiosidad, metas y desarrollo personal.', prompt: '¿Qué te gustaría aprender?', ph: 'Algo grande o algo pequeño.' },
+};
+const LEVELS = ['Semilla', 'Brote', 'Planta', 'Flor'];
+const CATS = {
+  ciencia: { label: 'Ciencia', hue: 250, deco: 'matraz', decoName: 'un matraz' },
+  deporte: { label: 'Deporte', hue: 30, deco: 'patineta', decoName: 'una patineta' },
+  arte: { label: 'Arte', hue: 350, deco: 'caballete', decoName: 'un caballete' },
+  exploracion: { label: 'Exploración', hue: 200, deco: 'brujula', decoName: 'una brújula' },
+  activismo: { label: 'Activismo', hue: 140, deco: 'banderin', decoName: 'un banderín' },
+  liderazgo: { label: 'Liderazgo', hue: 300, deco: 'farol', decoName: 'un farol' },
+  tecnologia: { label: 'Tecnología', hue: 220, deco: 'engranaje', decoName: 'un engranaje' },
+  educacion: { label: 'Educación', hue: 80, deco: 'libro', decoName: 'un libro abierto' },
+  historia: { label: 'Historia', hue: 55, deco: 'columna', decoName: 'una columna antigua' },
+};
+const SLOTS = {
+  conf: [[300, 262], [338, 292], [262, 288], [320, 330], [350, 356], [284, 318]],
+  amor: [[190, 394], [228, 412], [154, 414], [210, 362], [252, 386], [170, 372]],
+  calma: [[92, 302], [66, 334], [120, 326], [50, 372], [96, 376], [132, 358]],
+  crec: [[152, 262], [198, 250], [122, 282], [232, 274], [178, 300], [212, 318]],
+};
+const UNLOCKS = [
+  { id: 'piedras', at: 1, name: 'Piedras', x: 328, y: 426 },
+  { id: 'mariposa', at: 2, name: 'Mariposas', x: 118, y: 176 },
+  { id: 'maceta', at: 3, name: 'Macetas', x: 36, y: 424 },
+  { id: 'luces', at: 5, name: 'Luces' },
+  { id: 'flores', at: 7, name: 'Flores silvestres', x: 264, y: 432 },
+  { id: 'arbol', at: 9, name: 'Un árbol', x: 58, y: 258 },
+];
+const DECOPOS = { matraz: [132, 404], patineta: [292, 430], caballete: [346, 404], brujula: [240, 342], banderin: [26, 318], farol: [362, 300], engranaje: [236, 236], libro: [98, 420], columna: [24, 410] };
+const T = {
+  day: { page: '#e9e4dc', bgImg: '#f5efe4', bg: '#f5efe4', surface: '#fbf6ee', surface2: '#efe7d9', line: '#e5dccd', line2: '#cfc4b2', ink: '#2e2823', muted: '#6b6158', accent: '#a9553a', onAccent: '#fffaf2', archBg: '#dfe6d2', archRim: 'inset 0 0 0 1.5px #c5d2b3', ground: '#cad7b6', stem: '#5e7d54', leaf2: '#7fa070', orb: '#f0c98a', orbGlow: 'none', cg: '#e2a93b', co: '#d98fae', cl: '#9a86c8', cr: '#c85b5b', center: '#7a5230', glowG: 'none', glowO: 'none', glowL: 'none', glowR: 'none', soil: '#b3c39c', seed: '#8a6a48', roof: '#c0674a', wall: '#fbf6ee', win: '#b8aee0', winGlow: 'none', door: '#7d9a72', hill: '#e2e5d0', mail: '#c0674a', mailSlot: '#8f4a33', post: '#6b6158', flag: '#9a86c8', stars: '0', shadow: '0 8px 24px rgba(46,40,35,.06)', nav: '#efe7d9', navLine: '#e0d6c5', scrim: 'rgba(46,40,35,.35)', deco: '#2e2823', decoFill: '#fbf6ee', lightOn: '#e2a93b', pot: '#c0674a', stone: '#b5ad9c', stone2: '#9f9786', trunk: '#8a6a48', canopy: '#9db58a', canopy2: '#8aa577', env: '#efe4d2', envFlap: '#e0cfb6', envBack: '#d9c7ab', paper: '#fffaf2', badgeGlow: '0 6px 18px rgba(169,85,58,.35)', seedGlow: '0 0 30px rgba(169,85,58,.35)' },
+  night: { page: '#15111c', bgImg: 'linear-gradient(180deg,#2b2340 0%,#1c1729 75%)', bg: '#221c32', surface: '#2a2340', surface2: '#17131f', line: 'rgba(243,237,228,.1)', line2: 'rgba(243,237,228,.24)', ink: '#f3ede4', muted: '#c9bfd6', accent: '#f5c46b', onAccent: '#231c33', archBg: 'linear-gradient(180deg,#342a4c 0%,#261f38 100%)', archRim: 'inset 0 0 0 1.5px rgba(245,196,107,.28),0 0 32px rgba(185,163,227,.12)', ground: '#1f1a2d', stem: '#7fae8a', leaf2: '#9cc8a6', orb: '#f1e3c6', orbGlow: '0 0 36px rgba(241,227,198,.35)', cg: '#f5c46b', co: '#e8a3c4', cl: '#a58be0', cr: '#e57a86', center: '#6b4a2a', glowG: '0 0 18px rgba(245,196,107,.45)', glowO: '0 0 12px rgba(232,163,196,.35)', glowL: '0 0 10px rgba(165,139,224,.5)', glowR: '0 0 14px rgba(229,122,134,.4)', soil: '#2d2442', seed: '#c9a27a', roof: '#4a3c66', wall: '#3a2f52', win: '#f5c46b', winGlow: '0 0 28px rgba(245,196,107,.6)', door: '#221b33', hill: '#241d34', mail: '#b9a3e3', mailSlot: '#2b2340', post: '#5b4b7a', flag: '#e57a86', stars: '1', shadow: 'none', nav: '#17131f', navLine: 'rgba(243,237,228,.08)', scrim: 'rgba(10,8,16,.6)', deco: '#f3ede4', decoFill: '#3a2f52', lightOn: '#f5c46b', pot: '#b0674f', stone: '#4b4262', stone2: '#3d3552', trunk: '#5b4b7a', canopy: '#3e5a4a', canopy2: '#4a6b58', env: '#f3ede4', envFlap: '#e4d9c8', envBack: '#cbbfae', paper: '#f3ede4', badgeGlow: '0 0 24px rgba(245,196,107,.45)', seedGlow: '0 0 40px rgba(245,196,107,.6)' },
+};
+const NAV = [
+  { id: 'casa', label: 'Casa', w: 18, h: 16, r: '4px', rot: 0 },
+  { id: 'jardin', label: 'Jardín', w: 18, h: 18, r: '50%', rot: 0 },
+  { id: 'historias', label: 'Historias', w: 14, h: 18, r: '3px', rot: -8 },
+  { id: 'proceso', label: 'Mi proceso', w: 13, h: 13, r: '2px', rot: 45 },
+];
+const TABS = ['casa', 'jardin', 'historias', 'proceso'];
+
+function fresh() { return { started: false, mode: null, counts: { conf: 0, amor: 0, calma: 0, crec: 0 }, discovered: [], received: [], challenges: [], pos: {}, today: null, dayOffset: 0, unlocked: [] }; }
+function load() { try { const s = JSON.parse(localStorage.getItem(KEY)); if (s) return Object.assign(fresh(), s); } catch (e) {} return fresh(); }
+function save(p) { try { localStorage.setItem(KEY, JSON.stringify(p)); } catch (e) {} }
+function clone(o) { return JSON.parse(JSON.stringify(o)); }
+function modeOf(p) { if (p.mode) return p.mode; const h = new Date().getHours(); return h >= 19 || h < 7 ? 'night' : 'day'; }
+function applyTheme(m) { const r = document.documentElement.style; Object.entries(T[m]).forEach(([k, v]) => r.setProperty('--' + k, v)); }
+function dayDate(off) { return new Date(Date.now() + off * 864e5); }
+function dateKey(off) { const d = dayDate(off); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
+function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function total(p) { return ORDER.reduce((s, a) => s + p.counts[a], 0); }
+function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+class Component extends DCLogic {
+  state = this.init();
+
+  init() {
+    this.p = load();
+    const mode = modeOf(this.p);
+    applyTheme(mode);
+    this.scale = 1;
+    return { p: this.p, mode, screen: this.p.started ? 'casa' : 'welcome', women: [], letters: [], env: 'closed', readOnly: false, sel: null, answer: '', growStage: 0, growTarget: 0, growDone: false, sparkOn: false, seedOpen: false, clues: 1, wrong: [], right: false, filter: 'todas', sheet: null, toast: null, dragging: null, dragPos: null, confirmReset: false, scale: 1 };
+  }
+
+  componentDidMount() {
+    this.fit();
+    this.onResize = () => this.fit();
+    window.addEventListener('resize', this.onResize);
+    Promise.all([fetch('data/mujeres.json').then(r => r.json()), fetch('data/cartas.json').then(r => r.json())])
+      .then(([women, letters]) => this.setState({ women, letters }))
+      .catch(() => this.toast('No se pudieron cargar los datos'));
+    this.ambient();
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); clearTimeout(this.gt); }
+
+  componentDidUpdate(pp, ps) {
+    const s = this.state;
+    if (ps.screen !== s.screen) {
+      const el = document.querySelector('[data-screen]');
+      if (el) el.animate(this.navDir === 'fwd' ? [{ opacity: 0, transform: 'translateX(28px)' }, { opacity: 1, transform: 'none' }] : [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 320, easing: 'cubic-bezier(.2,.8,.2,1)' });
+      if (s.screen === 'jardin' && this.pendingHL) { const ids = this.pendingHL; this.pendingHL = null; setTimeout(() => ids.forEach(id => { const e = document.querySelector('[data-hl="' + id + '"]'); if (e) e.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.35)' }, { transform: 'scale(1)' }], { duration: 700, iterations: 3, easing: 'ease-in-out' }); }), 350); }
+      if (s.screen === 'historias' && this.newWoman) { const id = this.newWoman; this.newWoman = null; setTimeout(() => { const e = document.querySelector('[data-album="' + id + '"]'); if (e) e.animate([{ transform: 'scale(.6)', opacity: 0 }, { transform: 'scale(1.05)', opacity: 1 }, { transform: 'scale(1)' }], { duration: 600, easing: 'cubic-bezier(.2,.8,.2,1)' }); }, 200); }
+    }
+    if (ps.growStage !== s.growStage && s.screen === 'crecer') { const g = document.querySelector('[data-grow]'); if (g) g.animate([{ transform: 'scale(.7)', opacity: .4 }, { transform: 'scale(1.06)', opacity: 1 }, { transform: 'scale(1)' }], { duration: 520, easing: 'cubic-bezier(.2,.8,.2,1)' }); }
+    if (!ps.sheet && s.sheet) {
+      const sh = document.querySelector('[data-sheet]'); if (sh) sh.animate([{ transform: 'translateY(100%)' }, { transform: 'none' }], { duration: 360, easing: 'cubic-bezier(.2,.8,.2,1)' });
+      const sc = document.querySelector('[data-scrim]'); if (sc) sc.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300 });
+    } else if (ps.sheet && s.sheet && ps.sheet !== s.sheet) {
+      const b = document.querySelector('[data-sheetbody]'); if (b) b.animate([{ opacity: 0, transform: 'translateX(' + (this.sheetDir * 40) + 'px)' }, { opacity: 1, transform: 'none' }], { duration: 280, easing: 'ease-out' });
+    }
+    this.ambient();
+  }
+
+  ambient() {
+    const run = (sel, fn) => document.querySelectorAll(sel).forEach(el => { if (el.__a) return; el.__a = 1; fn(el); });
+    run('[data-bob]', el => el.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(-6px)' }, { transform: 'translateY(0)' }], { duration: 2400, iterations: Infinity, easing: 'ease-in-out' }));
+    run('[data-twinkle]', el => el.animate([{ opacity: .25 }, { opacity: 1 }, { opacity: .25 }], { duration: 2600, iterations: Infinity, delay: +el.getAttribute('data-twinkle') || 0 }));
+    run('[data-flutter]', el => el.animate([{ transform: 'scaleX(1)' }, { transform: 'scaleX(.35)' }, { transform: 'scaleX(1)' }], { duration: 520, iterations: Infinity }));
+    run('[data-pulse]', el => el.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.08)' }, { transform: 'scale(1)' }], { duration: 1600, iterations: Infinity, easing: 'ease-in-out' }));
+    run('[data-ring]', el => el.animate([{ transform: 'scale(.8)', opacity: .7 }, { transform: 'scale(1.5)', opacity: 0 }], { duration: 2000, iterations: Infinity, delay: +el.getAttribute('data-ring') || 0 }));
+    run('[data-enter]', el => el.animate([{ opacity: 0, transform: 'translateY(14px)' }, { opacity: 1, transform: 'none' }], { duration: 460, delay: +el.getAttribute('data-enter') || 0, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards' }));
+    run('[data-pop]', el => el.animate([{ transform: 'scale(.5)', opacity: 0 }, { transform: 'scale(1.04)', opacity: 1 }, { transform: 'scale(1)' }], { duration: 620, easing: 'cubic-bezier(.2,.8,.2,1)' }));
+    run('[data-toast]', el => el.animate([{ opacity: 0, transform: 'translateY(-16px)' }, { opacity: 1, transform: 'none' }], { duration: 300, easing: 'cubic-bezier(.2,.8,.2,1)' }));
+    run('[data-spark]', el => { const [dx, dy] = el.getAttribute('data-spark').split(',').map(Number); el.animate([{ transform: 'translate(0,0) scale(.3)', opacity: 1 }, { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(1)', opacity: 0 }], { duration: 1100, easing: 'cubic-bezier(.1,.7,.3,1)', fill: 'forwards' }); });
+  }
+
+  fit() { const s = Math.min(1, (window.innerHeight - 24) / 892, (window.innerWidth - 24) / 412); this.scale = s; this.setState({ scale: s }); }
+  upd(mut) { const p = clone(this.p); mut(p); this.p = p; save(p); this.setState({ p }); return p; }
+  go(screen, dir) { this.navDir = dir || 'fwd'; this.setState({ screen, sheet: null }); }
+  todayKey(p) { return dateKey((p || this.p).dayOffset); }
+  today(p) { p = p || this.p; return p.today && p.today.date === this.todayKey(p) ? p.today : null; }
+  womanById(id) { return this.state.women.find(w => w.id === id); }
+
+  toast(t) { (this.tq = this.tq || []).push(t); if (!this.toastBusy) this.nextToast(); }
+  nextToast() { const t = (this.tq || []).shift(); if (!t) { this.toastBusy = false; return; } this.toastBusy = true; this.setState({ toast: t }); setTimeout(() => { this.setState({ toast: null }); setTimeout(() => this.nextToast(), 260); }, 2400); }
+
+  setMode(m) { applyTheme(m); this.upd(p => { p.mode = m; }); this.setState({ mode: m }); }
+
+  openLetter(readOnly) { const td = this.today(); this.setState({ env: td && td.opened ? 'open' : 'closed', readOnly: !!readOnly, viewIdx: null }); this.go('carta'); }
+  mailboxTap() { const td = this.today(); if (!td) return this.openLetter(false); this.openLetter(!!td.cultivated); }
+  viewLetter(idx) { this.setState({ env: 'open', readOnly: true, viewIdx: idx }); this.go('carta'); }
+  openEnvelope() {
+    if (this.state.env !== 'closed' || !this.state.letters.length) return;
+    const n = this.state.letters.length;
+    this.setState({ env: 'opening' });
+    this.upd(p => { if (!this.today(p)) { const id = p.received.length % n; p.today = { date: this.todayKey(p), letterId: id, opened: true }; p.received.push({ date: p.today.date, id }); } });
+    setTimeout(() => this.setState({ env: 'open' }), 1250);
+  }
+  letterAction() {
+    const td = this.today();
+    if (!td) return this.openLetter(false);
+    if (td.done) return this.openLetter(true);
+    if (td.cultivated) return this.toDiscover();
+    return this.go('elegir');
+  }
+
+  pick(a, e) {
+    const el = e.currentTarget;
+    el.animate([{ transform: 'scale(1)' }, { transform: 'scale(.96)' }, { transform: 'scale(1.02)' }, { transform: 'scale(1)' }], { duration: 420, easing: 'ease-out' });
+    const f = el.querySelector('[data-flower]'); if (f) f.animate([{ transform: 'rotate(0)' }, { transform: 'rotate(-10deg) scale(1.1)' }, { transform: 'rotate(8deg) scale(1.1)' }, { transform: 'rotate(0)' }], { duration: 480 });
+    this.setState({ sel: a });
+    setTimeout(() => { this.setState({ answer: '' }); this.go('reto'); }, 480);
+  }
+
+  cultivar() {
+    const a = this.state.sel, txt = this.state.answer.trim();
+    if (!a || !txt) return;
+    const before = total(this.p);
+    let n = 0;
+    this.upd(p => {
+      p.counts[a]++; n = p.counts[a];
+      p.challenges.push({ date: this.todayKey(p), aspect: a, text: txt });
+      let td = this.today(p); if (!td) { td = p.today = { date: this.todayKey(p), letterId: null, opened: true }; }
+      td.cultivated = a;
+      UNLOCKS.forEach(u => { if (u.at <= before + 1 && !p.unlocked.includes(u.id)) p.unlocked.push(u.id); });
+    });
+    this.lastPlant = a + (n - 1);
+    this.pendingUnlocks = UNLOCKS.filter(u => u.at > before && u.at <= before + 1);
+    const target = Math.min(n, 3);
+    this.setState({ growStage: 0, growTarget: target, growDone: false, sparkOn: false });
+    this.go('crecer');
+    this.runGrowth(target);
+  }
+  runGrowth(target) {
+    clearTimeout(this.gt);
+    let s = 0;
+    const step = () => {
+      if (s < target) { s++; this.setState({ growStage: s }); this.gt = setTimeout(step, 900); }
+      else { this.gt = setTimeout(() => { this.setState({ growDone: true, sparkOn: target === 3 }); (this.pendingUnlocks || []).forEach(u => this.toast('Nuevo en tu jardín: ' + u.name)); this.pendingUnlocks = []; }, 350); }
+    };
+    this.gt = setTimeout(step, 1000);
+  }
+
+  toDiscover() {
+    const W = this.state.women; const td = this.today();
+    if (!W.length || !td) return this.go('casa', 'tab');
+    if (!td.womanId) {
+      const und = W.filter(w => !this.p.discovered.includes(w.id));
+      if (!und.length) { this.upd(p => { this.today(p).done = true; }); this.toast('Ya descubriste todas las historias disponibles'); this.pendingHL = [this.lastPlant]; return this.go('jardin', 'tab'); }
+      const pref = und.filter(w => w.rasgos.includes(td.cultivated));
+      const pool = pref.length ? pref : und;
+      const w = pool[Math.floor(Math.random() * pool.length)];
+      const others = shuffle(W.filter(x => x.id !== w.id)).slice(0, 2).map(x => x.id);
+      this.upd(p => { const t = this.today(p); t.womanId = w.id; t.options = shuffle([w.id, ...others]); });
+    }
+    this.setState({ seedOpen: false, clues: 1, wrong: [], right: false });
+    this.go('descubrir');
+  }
+  openSeed(e) {
+    if (this.seedBusy) return; this.seedBusy = true; setTimeout(() => { this.seedBusy = false; }, 500);
+    const el = document.querySelector('[data-pulse]') || e.currentTarget;
+    el.animate([{ transform: 'scale(1)', opacity: 1 }, { transform: 'scale(1.5)', opacity: 0 }], { duration: 380, easing: 'ease-in', fill: 'forwards' });
+    setTimeout(() => this.setState({ seedOpen: true }), 360);
+  }
+  guess(id, e) {
+    if (this.state.right) return;
+    const td = this.today();
+    if (id === td.womanId) { this.setState({ right: true }); setTimeout(() => this.startPuzzle(), 1100); }
+    else if (!this.state.wrong.includes(id)) {
+      e.currentTarget.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-8px)' }, { transform: 'translateX(8px)' }, { transform: 'translateX(-4px)' }, { transform: 'translateX(0)' }], { duration: 360 });
+      this.setState(s => ({ wrong: [...s.wrong, id] }));
+    }
+  }
+  startPuzzle() {
+    const td = this.today(); const w = td && this.womanById(td.womanId);
+    if (!w || !w.imagen) return this.go('mujer');
+    let o; do { o = shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8]); } while (o.every((p, i) => p === i));
+    this.setState({ pz: o, pzSel: null, pzSolved: false });
+    this.go('puzzle');
+  }
+  pzSwap(a, b) {
+    const o = this.state.pz.slice(); const i = o.indexOf(a), j = o.indexOf(b); o[i] = b; o[j] = a;
+    const solved = o.every((p, k) => p === k);
+    this.setState({ pz: o, pzSel: null, pzSolved: solved });
+    if (solved) setTimeout(() => { const f = document.querySelector('[data-pzframe]'); if (f) f.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.03)' }, { transform: 'scale(1)' }], { duration: 600, easing: 'cubic-bezier(.2,.8,.2,1)' }); }, 300);
+  }
+  pzDown(piece, e) {
+    if (this.state.pzSolved) return;
+    const el = e.currentTarget, x0 = e.clientX, y0 = e.clientY, sc = this.scale || 1; let moved = false;
+    el.style.zIndex = 5; el.style.transition = 'padding .4s';
+    const move = ev => { const dx = (ev.clientX - x0) / sc, dy = (ev.clientY - y0) / sc; if (Math.abs(dx) + Math.abs(dy) > 8) moved = true; if (moved) el.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(1.05)'; };
+    const up = ev => {
+      window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up);
+      el.style.transform = ''; el.style.zIndex = ''; el.style.transition = '';
+      if (moved) {
+        el.style.pointerEvents = 'none'; const hit = document.elementFromPoint(ev.clientX, ev.clientY); el.style.pointerEvents = '';
+        const t = hit && hit.closest('[data-piece]'); const b = t ? +t.getAttribute('data-piece') : null;
+        if (b !== null && b !== piece) this.pzSwap(piece, b); else this.setState({ pzSel: null });
+      } else {
+        const s = this.state.pzSel;
+        if (s === null) this.setState({ pzSel: piece }); else if (s === piece) this.setState({ pzSel: null }); else this.pzSwap(s, piece);
+      }
+    };
+    window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
+  }
+  guardar() {
+    const td = this.today(); if (!td) return;
+    const w = this.womanById(td.womanId); if (!w) return;
+    const finish = () => {
+      const cat = CATS[w.categoria];
+      const newCat = !this.p.discovered.some(id => { const x = this.womanById(id); return x && x.categoria === w.categoria; });
+      this.upd(p => { if (!p.discovered.includes(w.id)) p.discovered.push(w.id); this.today(p).done = true; });
+      this.toast('Guardada en Mis historias');
+      if (newCat) this.toast('Apareció ' + cat.decoName + ' en tu jardín');
+      this.pendingHL = [this.lastPlant, newCat ? 'd-' + cat.deco : null].filter(Boolean);
+      this.newWoman = w.id;
+      this.go('jardin', 'tab');
+    };
+    const el = document.querySelector('[data-card]');
+    if (el) { el.animate([{ transform: 'none', opacity: 1 }, { transform: 'translateY(260px) scale(.3)', opacity: 0 }], { duration: 540, easing: 'cubic-bezier(.5,0,.8,.4)', fill: 'forwards' }); setTimeout(finish, 520); }
+    else finish();
+  }
+
+  gardenItems() {
+    const p = this.p, items = [];
+    ORDER.forEach(a => {
+      const c = p.counts[a], n = Math.max(c, 1), st = Math.min(c, 3);
+      for (let k = 0; k < n; k++) {
+        const sl = SLOTS[a][k % 6], off = Math.floor(k / 6) * 14;
+        const id = a + k, pos = p.pos[id] || { x: sl[0] + off, y: sl[1] - off / 2 };
+        items.push({ id, type: 'plant', aspect: a, stage: st, x: pos.x, y: pos.y });
+      }
+    });
+    const t = total(p);
+    UNLOCKS.forEach(u => { if (u.x != null && t >= u.at) { const id = 'd-' + u.id, pos = p.pos[id] || { x: u.x, y: u.y }; items.push({ id, type: u.id, x: pos.x, y: pos.y }); } });
+    const cats = new Set(p.discovered.map(id => { const w = this.womanById(id); return w && w.categoria; }).filter(Boolean));
+    cats.forEach(c => { const d = CATS[c].deco, id = 'd-' + d, dp = DECOPOS[d], pos = p.pos[id] || { x: dp[0], y: dp[1] }; items.push({ id, type: d, x: pos.x, y: pos.y }); });
+    const dp = this.state.dragPos;
+    items.forEach(it => { if (dp && dp.id === it.id) { it.x = dp.x; it.y = dp.y; } });
+    return items.sort((a, b) => a.y - b.y);
+  }
+
+  itemDown(id, e) {
+    if (e.button && e.button !== 0) return;
+    const sx = e.clientX, sy = e.clientY;
+    const it = this.gardenItems().find(i => i.id === id); if (!it) return;
+    const start = { x: it.x, y: it.y };
+    let active = false;
+    const timer = setTimeout(() => { active = true; this.setState({ dragging: id, dragPos: { id, x: start.x, y: start.y } }); if (navigator.vibrate) navigator.vibrate(10); }, 260);
+    const cleanup = () => { clearTimeout(timer); window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up); };
+    const move = ev => {
+      const dx = (ev.clientX - sx) / this.scale, dy = (ev.clientY - sy) / this.scale;
+      if (!active) { if (Math.hypot(dx, dy) > 8) cleanup(); return; }
+      this.setState({ dragPos: { id, x: clamp(start.x + dx, 16, 364), y: clamp(start.y + dy, 150, 434) } });
+    };
+    const up = () => {
+      cleanup();
+      const dp = this.state.dragPos;
+      if (active && dp) this.upd(p => { p.pos[id] = { x: Math.round(dp.x), y: Math.round(dp.y) }; });
+      this.setState({ dragging: null, dragPos: null });
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', up);
+  }
+
+  discoveredList() { return this.state.women.filter(w => this.p.discovered.includes(w.id)); }
+  openSheet(id) { this.setState({ sheet: id }); }
+  closeSheet() {
+    const el = document.querySelector('[data-sheet]'), sc = document.querySelector('[data-scrim]');
+    if (el) { el.animate([{ transform: el.style.transform || 'none' }, { transform: 'translateY(100%)' }], { duration: 260, easing: 'ease-in', fill: 'forwards' }); if (sc) sc.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260, fill: 'forwards' }); setTimeout(() => this.setState({ sheet: null }), 240); }
+    else this.setState({ sheet: null });
+  }
+  stepSheet(d) { const l = this.discoveredList(); if (l.length < 2) return; const i = l.findIndex(w => w.id === this.state.sheet); this.sheetDir = d; this.setState({ sheet: l[(i + d + l.length) % l.length].id }); }
+  sheetDown(e) {
+    const el = document.querySelector('[data-sheet]'); if (!el) return;
+    const sx = e.clientX, sy = e.clientY;
+    const move = ev => { const dy = Math.max(0, (ev.clientY - sy) / this.scale); el.style.transform = 'translateY(' + dy + 'px)'; };
+    const up = ev => {
+      window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up);
+      const dx = (ev.clientX - sx) / this.scale, dy = (ev.clientY - sy) / this.scale;
+      if (dy > 110) return this.closeSheet();
+      const cur = el.style.transform; el.style.transform = '';
+      if (cur) el.animate([{ transform: cur }, { transform: 'none' }], { duration: 200, easing: 'ease-out' });
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) this.stepSheet(dx < 0 ? 1 : -1);
+    };
+    window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
+  }
+
+  wv(w, night) {
+    const c = CATS[w.categoria];
+    return { ...w, imagen: w.imagen || '', encuadre: w.encuadre || '50% 25%', hasFoto: !!w.imagen, nameUpper: w.nombre.toUpperCase(), catLabel: c.label, catDot: 'oklch(0.7 0.11 ' + c.hue + ')', bg: night ? 'oklch(0.42 0.07 ' + c.hue + ')' : 'oklch(0.87 0.06 ' + c.hue + ')', fg: night ? 'oklch(0.94 0.03 ' + c.hue + ')' : 'oklch(0.34 0.07 ' + c.hue + ')', rasgosV: w.rasgos.map(a => ({ name: ASP[a].name, col: ASP[a].col })) };
+  }
+
+  renderVals() {
+    const s = this.state, p = this.p, W = s.women, L = s.letters, night = s.mode === 'night', sc = s.screen;
+    const td = this.today(), tot = total(p);
+    const empty = { imagen: '', encuadre: '50% 25%', hasFoto: false, nombre: '', nameUpper: '', iniciales: '', catLabel: '', catDot: 'transparent', bg: 'transparent', fg: 'transparent', pais: '', epoca: '', historia: '', rasgosV: [] };
+
+    const dd = dayDate(p.dayOffset);
+    let dateLabel = dd.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+    dateLabel = dateLabel.charAt(0).toUpperCase() + dateLabel.slice(1);
+    const hr = new Date().getHours();
+    const greeting = night ? 'Buenas noches' : hr < 12 ? 'Buenos días' : 'Buenas tardes';
+
+    let ls = !td ? 'new' : td.done ? 'done' : td.cultivated ? 'story' : 'choose';
+    const LC = {
+      new: ['Tu carta de hoy ha llegado', 'Toca el buzón o ábrela aquí', 'Abrir'],
+      choose: ['Tu carta de hoy te espera', 'Elige qué quieres cultivar', 'Seguir'],
+      story: ['Hay una historia esperando', 'Descubre quién es', 'Seguir'],
+      done: ['Ya recibiste la carta de hoy', 'Mañana llegará otra', 'Releer'],
+    }[ls];
+
+    const viewing = s.viewIdx != null && p.received[s.viewIdx];
+    const lid = viewing ? p.received[s.viewIdx].id : td && td.letterId != null ? td.letterId : null;
+    const letter = lid != null && L[lid] ? L[lid] : { frase: '', reflexion: '' };
+    const fmt = k => { const [y, m, d] = k.split('-').map(Number); return new Date(y, m - 1, d).toLocaleDateString('es-ES', { day: 'numeric', month: 'long' }); };
+    const selA = ASP[s.sel] || ASP.conf;
+    const growA = s.sel || (td && td.cultivated) || 'conf';
+    const GA = ASP[growA];
+    const growTitle = s.growDone ? (s.growTarget === 3 ? 'Un nuevo ' + GA.plant + ' floreció en tu jardín' : 'Tu ' + GA.plant + ' llegó a la etapa de ' + LEVELS[s.growTarget].toLowerCase()) : ['Sembrando una semilla…', 'Está brotando…', 'Está creciendo…', 'Está floreciendo…'][s.growStage];
+    const growSub = s.growDone ? (s.growTarget === 3 ? 'Ya forma parte de tu jardín.' : 'Cada vez que cultives ' + GA.name + ' seguirá creciendo.') : 'Cultivando ' + GA.name;
+
+    const cwRaw = td && td.womanId ? this.womanById(td.womanId) : null;
+    const cw = cwRaw ? this.wv(cwRaw, night) : empty;
+    const guessOpts = (td && td.options ? td.options : []).map(id => {
+      const w = this.womanById(id); const wrong = s.wrong.includes(id); const right = s.right && id === td.womanId;
+      return { name: w ? w.nombre : '', onTap: e => this.guess(id, e), bg: right ? 'var(--good)' : 'var(--surface)', fg: right ? 'var(--bg)' : wrong ? 'var(--muted)' : 'var(--ink)', bd: right ? 'var(--good)' : 'var(--line)', deco: wrong ? 'line-through' : 'none', note: right ? '¡Es ella!' : wrong ? 'No es ella' : '' };
+    });
+
+    const items = this.gardenItems().map(it => ({ ...it, z: Math.round(it.y) + (s.dragging === it.id ? 1000 : 0), sc: s.dragging === it.id ? 1.15 : 1, shadow: s.dragging === it.id ? 'drop-shadow(0 8px 8px rgba(0,0,0,.25))' : 'none', plant: it.type === 'plant', [it.type]: true, onDown: e => this.itemDown(it.id, e) }));
+    const lights = Array.from({ length: 11 }, (_, i) => { const th = Math.PI * (1.08 + i * 0.084); return { x: Math.round(190 + 158 * Math.cos(th) - 3), y: Math.round(186 + 158 * Math.sin(th)), d: i * 220 }; });
+
+    const cats = [{ id: 'todas', label: 'Todas', hue: null }, ...Object.entries(CATS).map(([id, c]) => ({ id, label: c.label, hue: c.hue }))];
+    const catChips = cats.map(k => { const on = s.filter === k.id; return { label: k.label, onTap: () => this.setState({ filter: k.id }), bg: on ? 'var(--ink)' : 'transparent', fg: on ? 'var(--bg)' : 'var(--ink)', bd: on ? 'var(--ink)' : 'var(--line2)', dot: k.hue == null ? 'var(--accent)' : 'oklch(0.7 0.11 ' + k.hue + ')' }; });
+    const albumCards = W.filter(w => s.filter === 'todas' || w.categoria === s.filter).map(w => { const known = p.discovered.includes(w.id); return { ...this.wv(w, night), known, unknown: !known, onOpen: () => this.openSheet(w.id), onLocked: e => { e.currentTarget.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-5px)' }, { transform: 'translateX(5px)' }, { transform: 'translateX(0)' }], { duration: 300 }); this.toast('Cultiva algo para descubrir esta historia'); } }; });
+    const swRaw = s.sheet ? this.womanById(s.sheet) : null;
+
+    const nDisc = p.discovered.length;
+    const phrases = [];
+    if (tot === 0) phrases.push('Tu jardín está listo para su primera semilla.');
+    if (p.challenges.length > 0) phrases.push('Has dedicado tiempo a escucharte.');
+    if (nDisc > 0) phrases.push('Has explorado nuevas historias.');
+    if (tot > 0) phrases.push('Tu jardín sigue creciendo.');
+    const miniDots = this.gardenItems().map(it => { const sz = it.type === 'plant' ? [4, 5, 7, 9][it.stage] : 5; return { x: Math.round(it.x * 0.363), y: Math.round(it.y * 0.363), s: sz, h: sz / 2, r: it.type === 'plant' ? '50%' : '1px', c: it.type === 'plant' ? (it.stage === 0 ? 'var(--seed)' : ASP[it.aspect].col) : 'var(--muted)' }; });
+
+    const nav = NAV.map(n => { const on = sc === n.id; return { ...n, onTap: () => this.go(n.id, 'tab'), pill: on ? 'var(--accentSoft)' : 'transparent', fill: on ? 'var(--accent)' : 'transparent', stroke: on ? 'var(--accent)' : 'var(--muted)', fg: on ? (night ? 'var(--accent)' : 'var(--ink)') : 'var(--muted)', fw: on ? 700 : 400 }; });
+
+    return {
+      night, scale: s.scale, fw: Math.round(412 * s.scale), fh: Math.round(892 * s.scale),
+      isWelcome: sc === 'welcome', isIntro: sc === 'intro', isCasa: sc === 'casa', isCarta: sc === 'carta', isElegir: sc === 'elegir', isReto: sc === 'reto', isCrecer: sc === 'crecer', isDescubrir: sc === 'descubrir', isMujer: sc === 'mujer', isPuzzle: sc === 'puzzle', isJardin: sc === 'jardin', isHistorias: sc === 'historias', isProceso: sc === 'proceso', isTab: TABS.includes(sc),
+      toIntro: () => this.go('intro'), enterGarden: () => { this.upd(q => { q.started = true; }); this.go('casa', 'tab'); },
+      goCasa: () => this.go('casa', 'tab'), toJardin: () => this.go('jardin', 'tab'), toHistorias: () => this.go('historias', 'tab'),
+      dateLabel, greeting, hasNew: ls === 'new', hasLuces: tot >= 5, hasMaceta: tot >= 3,
+      letterTitle: LC[0], letterSub: LC[1], letterBtn: LC[2], letterAction: () => this.letterAction(),
+      setDay: () => this.setMode('day'), setNight: () => this.setMode('night'),
+      dayPillBg: night ? 'transparent' : 'var(--surface)', dayPillFg: night ? 'var(--muted)' : 'var(--ink)', nightPillBg: night ? 'var(--surface)' : 'transparent', nightPillFg: night ? 'var(--ink)' : 'var(--muted)',
+      envClosed: s.env !== 'open', envOpen: s.env === 'open', openEnvelope: () => this.openEnvelope(),
+      paperY: s.env === 'closed' ? 0 : -120, flapDeg: s.env === 'closed' ? 0 : 180, flapZ: s.env === 'closed' ? 3 : 0, sealOp: s.env === 'closed' ? 1 : 0,
+      letterNum: viewing ? s.viewIdx + 1 : td ? Math.max(1, p.received.findIndex(r => r.date === td.date) + 1) : p.received.length + 1,
+      isCartas: sc === 'cartas', hasLetters: p.received.length > 0, toCartas: () => this.go('cartas'), mailboxTap: () => this.mailboxTap(),
+      cartaHead: viewing ? 'Mis cartas' : 'Carta del día', cartaClose: () => viewing ? this.go('cartas', 'tab') : this.go('casa', 'tab'),
+      lettersSub: p.received.length === 1 ? 'Has recibido 1 carta.' : 'Has recibido ' + p.received.length + ' cartas.',
+      letterList: p.received.map((r, i) => ({ num: i + 1, date: fmt(r.date), frase: L[r.id] ? L[r.id].frase : '', d: Math.min(i, 6) * 60, onOpen: () => this.viewLetter(i) })).reverse(), letterFrase: letter.frase, letterReflexion: letter.reflexion,
+      showChooseQ: !s.readOnly, cartaBtn: viewing ? 'VOLVER A MIS CARTAS' : s.readOnly ? 'VOLVER A CASA' : 'ELEGIR', cartaNext: () => viewing ? this.go('cartas', 'tab') : s.readOnly ? this.go('casa', 'tab') : this.go('elegir'),
+      aspectOpts: ORDER.map(a => ({ id: a, name: ASP[a].name, desc: ASP[a].desc, col: ASP[a].col, border: s.sel === a && sc === 'elegir' ? ASP[a].col : 'var(--line)', onPick: e => this.pick(a, e) })),
+      backElegir: () => this.go('elegir'), retoName: selA.name, retoCol: selA.col, retoHasPre: !!selA.pre, retoHasPrefix: !!selA.prefix, retoPrompt: selA.prompt, retoPh: selA.ph,
+      answer: s.answer, onAnswer: e => this.setState({ answer: e.target.value }), cultivar: () => this.cultivar(), cultOp: s.answer.trim() ? 1 : 0.45,
+      growAsp: growA, growAspName: GA.name, growCol: GA.col, growStage: s.growStage, growDone: s.growDone, sparkOn: s.sparkOn, growTitle, growSub,
+      growSteps: LEVELS.map((l, i) => ({ label: l, op: i <= s.growTarget ? 1 : 0.35, fill: i <= s.growStage ? 'var(--accent)' : 'transparent' })),
+      toDiscover: () => this.toDiscover(),
+      seedClosed: !s.seedOpen, seedOpen: s.seedOpen, openSeed: e => this.openSeed(e),
+      clue1: cwRaw ? cwRaw.pistas[0] : '', clue2: cwRaw ? cwRaw.pistas[1] : '', hasClue2: s.clues >= 2, canMoreClue: s.clues < 2, moreClue: () => this.setState({ clues: 2 }),
+      guessOpts, toMujer: () => s.right ? this.startPuzzle() : this.toast('Primero adivina quién es'), discOp: s.right ? 1 : 0.45,
+      pzTiles: (s.pz || []).map((_, p) => { const k = s.pz.indexOf(p); return { p, x: (k % 3) * 33.3333 + '%', y: Math.floor(k / 3) * 33.3333 + '%', il: -(p % 3) * 100 + '%', it: -Math.floor(p / 3) * 100 + '%', ring: s.pzSel === p ? 'inset 0 0 0 3px var(--accent)' : 'inset 0 0 0 0 transparent', onDown: e => this.pzDown(p, e) }; }),
+      pzGap: s.pzSolved ? '0px' : '2px', pzRad: s.pzSolved ? '0px' : '10px', pzBtnOp: s.pzSolved ? 1 : 0,
+      pzTitle: s.pzSolved ? (cw.nombre || '') : 'Arma el rompecabezas para conocer su historia',
+      pzSub: s.pzSolved ? 'Retrato completo' : 'Toca dos piezas para intercambiarlas, o arrástralas a su lugar.',
+      pzNext: () => { if (s.pzSolved) this.go('mujer'); },
+      cw, guardar: () => this.guardar(),
+      items, lights, gardenEmpty: tot === 0,
+      aspectCards: ORDER.map(a => { const c = p.counts[a]; return { name: ASP[a].name, col: ASP[a].col, sub: c === 0 ? 'Semilla' : c + ' ' + (c === 1 ? ASP[a].plant : ASP[a].plural) + ' · ' + LEVELS[Math.min(c, 3)] }; }),
+      nDisc, nTotal: W.length || 12, catChips, albumCards,
+      sheetOpen: !!swRaw, sw: swRaw ? this.wv(swRaw, night) : empty, closeSheet: () => this.closeSheet(), sheetDown: e => this.sheetDown(e),
+      phrases, cultRows: ORDER.map(a => ({ name: ASP[a].name, col: ASP[a].col, times: p.counts[a] === 1 ? '1 vez' : p.counts[a] + ' veces' })),
+      discLabel: nDisc === 1 ? 'mujer descubierta' : 'mujeres descubiertas', discMini: this.discoveredList().map(w => this.wv(w, night)), miniDots,
+      nLetters: p.received.length, nRetos: p.challenges.length,
+      showDemo: this.props.showDemoTools ?? true,
+      nextDay: () => { this.upd(q => { q.dayOffset++; }); this.toast('Es un nuevo día. Tu carta te espera en casa.'); },
+      resetAll: () => { if (!s.confirmReset) { this.setState({ confirmReset: true }); setTimeout(() => this.setState({ confirmReset: false }), 3000); return; } this.p = fresh(); save(this.p); applyTheme(modeOf(this.p)); this.setState({ p: this.p, mode: modeOf(this.p), confirmReset: false, sel: null }); this.go('welcome'); },
+      resetLabel: s.confirmReset ? 'Toca otra vez' : 'Reiniciar progreso', resetFg: s.confirmReset ? 'var(--accent)' : 'var(--ink)',
+      nav, hasToast: !!s.toast, toast: s.toast || '',
+    };
+  }
+}
+</script>
+</body>
+</html>

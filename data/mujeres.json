@@ -1,0 +1,230 @@
+[
+  {
+    "id": "sky-brown",
+    "nombre": "Sky Brown",
+    "iniciales": "SB",
+    "categoria": "deporte",
+    "pais": "Reino Unido · Japón",
+    "epoca": "Siglo XXI (n. 2008)",
+    "historia": "Nació en 2008 en Miyazaki, Japón, hija de padre británico y madre japonesa. Aprendió a patinar muy pequeña y también practica surf. En 2020 sufrió una caída grave durante un entrenamiento, con fracturas en el cráneo, la muñeca y la mano, y volvió a competir. En los Juegos Olímpicos de Tokio 2020, con 13 años, ganó la medalla de bronce en skateboarding park y se convirtió en la medallista olímpica más joven de Gran Bretaña. En París 2024 volvió a ganar el bronce.",
+    "rasgos": [
+      "conf",
+      "crec"
+    ],
+    "pistas": [
+      "Desde muy joven encontró una forma poco común de desafiar los límites de su deporte.",
+      "Nació en Japón, compite por Gran Bretaña y con 13 años subió a un podio olímpico sobre una tabla."
+    ],
+    "imagen": "images/sky-brown.jpg",
+    "encuadre": "45% 30%"
+  },
+  {
+    "id": "aisholpan",
+    "nombre": "Aisholpan Nurgaiv",
+    "iniciales": "AN",
+    "categoria": "exploracion",
+    "pais": "Mongolia",
+    "epoca": "Siglo XXI (n. 2003)",
+    "historia": "Nació en 2003 en una familia kazaja nómada de la provincia de Bayan-Ölgii, en Mongolia, donde la caza con águila real es una tradición que suele pasar de padres a hijos varones. Su padre, cazador con águila como su abuelo, le enseñó a capturar, entrenar y cuidar a su propia águila. En 2014, con 13 años, compitió en el Festival del Águila Dorada de Ölgii y ganó. Su historia se cuenta en el documental The Eagle Huntress (2016).",
+    "rasgos": [
+      "conf",
+      "calma"
+    ],
+    "pistas": [
+      "Aprendió de su padre una tradición familiar que se transmite de generación en generación en las montañas de Mongolia.",
+      "Con 13 años ganó una competencia en la que las participantes trabajan junto a un águila real."
+    ],
+    "imagen": "images/aisholpan.jpg",
+    "encuadre": "72% 30%"
+  },
+  {
+    "id": "marie-curie",
+    "nombre": "Marie Curie",
+    "iniciales": "MC",
+    "categoria": "ciencia",
+    "pais": "Polonia · Francia",
+    "epoca": "1867 – 1934",
+    "historia": "Nació en Varsovia, Polonia, en 1867. Como las mujeres no podían estudiar en la universidad de su ciudad, se trasladó a París para estudiar física y matemáticas. Junto a Pierre Curie descubrió los elementos polonio y radio, y acuñó el término «radiactividad». En 1903 fue la primera mujer en recibir un Premio Nobel (Física) y en 1911 recibió el Nobel de Química. Es la única persona premiada en dos ciencias distintas. También fue la primera mujer profesora en la Universidad de París.",
+    "rasgos": [
+      "crec",
+      "calma"
+    ],
+    "pistas": [
+      "Trabajó durante años estudiando un fenómeno al que ella misma le dio nombre.",
+      "Es la única persona que ha recibido el Premio Nobel en dos ciencias distintas."
+    ],
+    "imagen": "images/marie-curie.jpg",
+    "encuadre": "50% 25%"
+  },
+  {
+    "id": "katherine-johnson",
+    "nombre": "Katherine Johnson",
+    "iniciales": "KJ",
+    "categoria": "ciencia",
+    "pais": "Estados Unidos",
+    "epoca": "1918 – 2020",
+    "historia": "Nació en 1918 en Virginia Occidental, Estados Unidos. Mostró un gran talento para las matemáticas desde niña y fue una de las primeras estudiantes afroamericanas en ingresar al posgrado de la Universidad de Virginia Occidental. En 1953 empezó a trabajar en NACA, la agencia que después se convirtió en la NASA. Calculó la trayectoria del vuelo de Alan Shepard en 1961 y verificó a mano los cálculos de la computadora para el vuelo orbital de John Glenn en 1962. También trabajó en la misión Apolo 11. En 2015 recibió la Medalla Presidencial de la Libertad.",
+    "rasgos": [
+      "conf",
+      "crec"
+    ],
+    "pistas": [
+      "Sus cálculos a mano eran tan confiables que un astronauta pidió que ella revisara los de la computadora.",
+      "Trabajó en la NASA calculando trayectorias de vuelos espaciales, incluido el del Apolo 11."
+    ],
+    "imagen": "images/katherine-johnson.jpg",
+    "encuadre": "42% 28%"
+  },
+  {
+    "id": "frida-kahlo",
+    "nombre": "Frida Kahlo",
+    "iniciales": "FK",
+    "categoria": "arte",
+    "pais": "México",
+    "epoca": "1907 – 1954",
+    "historia": "Nació en 1907 en Coyoacán, Ciudad de México. A los 18 años sufrió un grave accidente de autobús que le dejó lesiones de por vida. Durante su recuperación empezó a pintar en cama, con un espejo colocado sobre ella. Muchas de sus obras son autorretratos que hablan de su cuerpo, su dolor y su identidad, con elementos de la cultura popular mexicana. En 1939 el Louvre adquirió su obra «El marco», la primera de un artista mexicano del siglo XX en entrar a ese museo.",
+    "rasgos": [
+      "amor",
+      "crec"
+    ],
+    "pistas": [
+      "Tras un grave accidente a los 18 años, comenzó a crear usando un espejo colocado sobre su cama.",
+      "Muchas de sus obras más conocidas son autorretratos llenos de símbolos de la cultura mexicana."
+    ],
+    "imagen": "images/frida-kahlo.jpg",
+    "encuadre": "50% 30%"
+  },
+  {
+    "id": "amelia-earhart",
+    "nombre": "Amelia Earhart",
+    "iniciales": "AE",
+    "categoria": "exploracion",
+    "pais": "Estados Unidos",
+    "epoca": "1897 – 1937",
+    "historia": "Nació en 1897 en Kansas, Estados Unidos. Tomó su primera clase de vuelo en 1921 y poco después compró su propio avión. En 1932 se convirtió en la primera mujer en cruzar el océano Atlántico volando sola y sin escalas. Fue la primera presidenta de The Ninety-Nines, una organización de mujeres pilotos. En 1937, durante un intento de dar la vuelta al mundo, desapareció sobre el océano Pacífico.",
+    "rasgos": [
+      "conf",
+      "crec"
+    ],
+    "pistas": [
+      "En 1932 cruzó un océano completo sin compañía y sin hacer escalas.",
+      "Fue la primera presidenta de una organización de mujeres pilotos llamada The Ninety-Nines."
+    ],
+    "imagen": "images/amelia-earhart.jpg",
+    "encuadre": "50% 30%"
+  },
+  {
+    "id": "malala",
+    "nombre": "Malala Yousafzai",
+    "iniciales": "MY",
+    "categoria": "educacion",
+    "pais": "Pakistán",
+    "epoca": "Siglo XXI (n. 1997)",
+    "historia": "Nació en 1997 en el valle de Swat, Pakistán. Cuando los talibanes intentaron impedir que las niñas fueran a la escuela, empezó a hablar públicamente por su derecho a estudiar, primero en un blog para la BBC en urdu, con un seudónimo. En 2012, con 15 años, recibió un disparo cuando volvía de la escuela. Se recuperó en el Reino Unido y siguió defendiendo la educación de las niñas. Junto a su padre fundó el Fondo Malala, y en 2014, con 17 años, se convirtió en la persona más joven en recibir el Premio Nobel de la Paz.",
+    "rasgos": [
+      "conf",
+      "amor"
+    ],
+    "pistas": [
+      "A los 11 años escribía un blog, con un nombre falso, sobre su vida en un valle donde se quería impedir que las niñas estudiaran.",
+      "Con 17 años se convirtió en la persona más joven en recibir el Premio Nobel de la Paz."
+    ],
+    "imagen": "images/malala.jpg",
+    "encuadre": "55% 28%"
+  },
+  {
+    "id": "wangari-maathai",
+    "nombre": "Wangari Maathai",
+    "iniciales": "WM",
+    "categoria": "activismo",
+    "pais": "Kenia",
+    "epoca": "1940 – 2011",
+    "historia": "Nació en 1940 en Kenia. En 1971 fue la primera mujer de África oriental y central en obtener un doctorado. En 1977 fundó el Movimiento Cinturón Verde, que organizó a mujeres para plantar árboles, cuidar la tierra y generar ingresos; desde entonces se han plantado más de 50 millones de árboles. En 2004 fue la primera mujer africana en recibir el Premio Nobel de la Paz.",
+    "rasgos": [
+      "calma",
+      "crec"
+    ],
+    "pistas": [
+      "Fundó un movimiento que ha plantado decenas de millones de árboles en su país.",
+      "Fue la primera mujer africana en recibir el Premio Nobel de la Paz, en 2004."
+    ],
+    "imagen": "images/wangari-maathai.jpg",
+    "encuadre": "45% 14%"
+  },
+  {
+    "id": "ada-lovelace",
+    "nombre": "Ada Lovelace",
+    "iniciales": "AL",
+    "categoria": "tecnologia",
+    "pais": "Reino Unido",
+    "epoca": "1815 – 1852",
+    "historia": "Nació en Londres en 1815. Su madre le dio una educación en matemáticas y ciencias, algo poco común para las niñas de su época. Trabajó con el matemático Charles Babbage en su Máquina Analítica, una computadora mecánica que nunca llegó a construirse. En 1843 publicó unas notas con un método para que la máquina calculara los números de Bernoulli, considerado por muchos el primer programa de computadora. También imaginó que estas máquinas podrían trabajar con algo más que números, como la música.",
+    "rasgos": [
+      "crec",
+      "conf"
+    ],
+    "pistas": [
+      "En el siglo XIX escribió instrucciones para una máquina que nunca llegó a construirse.",
+      "Sus notas de 1843 incluyen lo que muchos consideran el primer programa de computadora."
+    ],
+    "imagen": "images/ada-lovelace.png",
+    "encuadre": "50% 25%"
+  },
+  {
+    "id": "rigoberta-menchu",
+    "nombre": "Rigoberta Menchú",
+    "iniciales": "RM",
+    "categoria": "activismo",
+    "pais": "Guatemala",
+    "epoca": "Siglos XX – XXI (n. 1959)",
+    "historia": "Nació en 1959 en Guatemala, en una familia maya k'iche'. Durante la guerra civil guatemalteca perdió a varios familiares, entre ellos a su padre, su madre y un hermano. Desde el exilio denunció la violencia contra las comunidades indígenas y defendió sus derechos. En 1992 recibió el Premio Nobel de la Paz; fue la primera mujer indígena en recibirlo.",
+    "rasgos": [
+      "amor",
+      "conf"
+    ],
+    "pistas": [
+      "Es maya k'iche' y dedicó su vida a defender los derechos de los pueblos indígenas de su país.",
+      "En 1992 recibió el Premio Nobel de la Paz."
+    ],
+    "imagen": "images/rigoberta-menchu.jpg",
+    "encuadre": "50% 30%"
+  },
+  {
+    "id": "ellen-johnson-sirleaf",
+    "nombre": "Ellen Johnson Sirleaf",
+    "iniciales": "ES",
+    "categoria": "liderazgo",
+    "pais": "Liberia",
+    "epoca": "Siglos XX – XXI (n. 1938)",
+    "historia": "Nació en 1938 en Monrovia, Liberia. Estudió economía y administración pública en Estados Unidos y trabajó en el gobierno de su país y en organismos internacionales. Por criticar a gobiernos militares fue encarcelada y tuvo que exiliarse. Ganó las elecciones de 2005 y en 2006 se convirtió en la primera mujer elegida jefa de Estado en África. Gobernó hasta 2018. En 2011 recibió el Premio Nobel de la Paz.",
+    "rasgos": [
+      "conf",
+      "calma"
+    ],
+    "pistas": [
+      "Economista, fue elegida para dirigir su país después de años de guerra civil.",
+      "Fue la primera mujer elegida jefa de Estado en África."
+    ],
+    "imagen": "images/ellen-johnson-sirleaf.jpg",
+    "encuadre": "50% 18%"
+  },
+  {
+    "id": "juana-azurduy",
+    "nombre": "Juana Azurduy",
+    "iniciales": "JA",
+    "categoria": "historia",
+    "pais": "Bolivia",
+    "epoca": "1780 – 1862",
+    "historia": "Nació en 1780 cerca de Chuquisaca, en el Alto Perú, hoy Bolivia. Junto a su esposo, Manuel Ascencio Padilla, luchó en las guerras de independencia contra el dominio español, al frente de tropas guerrilleras que incluían a mujeres e indígenas. En 1816 recibió el grado de teniente coronel. Murió en la pobreza en 1862. En 2009, Argentina la ascendió de forma póstuma a general.",
+    "rasgos": [
+      "conf",
+      "amor"
+    ],
+    "pistas": [
+      "Luchó a caballo en las guerras de independencia de América del Sur, al frente de tropas guerrilleras.",
+      "Casi dos siglos después de sus batallas, Argentina la nombró general de forma póstuma."
+    ],
+    "imagen": "images/juana-azurduy.jpg",
+    "encuadre": "50% 14%"
+  }
+]
